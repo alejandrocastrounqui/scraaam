@@ -1,0 +1,24 @@
+body {
+  background-color: #00AABB;
+}
+
+article {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+}
+
+article header {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+article footer {
+  font-weight: lighter;
+  font-size: 0.7em;
+  text-align: right;
+}
