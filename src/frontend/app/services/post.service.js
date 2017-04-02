@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 @Injectable()
 export class PostService {
   constructor(http : Http) {
-    console.log('construyendo una instancia del servicio de post')
     this.postListeners = []
     this.http = http
     this._posts = []
@@ -15,31 +14,31 @@ export class PostService {
   get posts() {
     return this._posts
   }
+  getPost(id) {
+    return this.http.get(`/noticias/${id}`).toPromise()
+            .then(response => response.json());
+  }
+  removePost(id){
+    return this.http.delete(`/noticias/${id}`).toPromise();
+  }
   create(post) {
     this.http.post("/noticias", JSON.stringify(post), { headers:{'Content-Type': 'application/json'}})
       .toPromise()
       .then(response => {
+        post._id = response.json()
+        post.__v = 0
+        post.comments = []
+        post.upvotes = 0
         this.addPost(post)
       })
       .catch(err => console.log(err))
   }
-  observePost(listener){
-    this.postListeners.push(listener);
-  }
   addPost(post){
-    this._posts = this._posts.slice()
     this._posts.push(post);
-    this.notifyPost()
+    return this
   }
   addPosts(posts){
-    this._posts = this._posts.slice()
     this._posts.push(...posts);
-    this.notifyPost()
-  }
-  notifyPost(){
-    console.log('notificando')
-    for (var index = 0, len = this.postListeners.length; index < len; index++) {
-      this.postListeners[index]();
-    }
+    return this
   }
 }

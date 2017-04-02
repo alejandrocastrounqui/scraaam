@@ -5,6 +5,7 @@
 ```
 mongod --dbpath mongo_data
 ```
+
 ### Initialize server
 
 ```

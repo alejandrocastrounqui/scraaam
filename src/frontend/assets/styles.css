@@ -22,3 +22,8 @@ article footer {
   font-size: 0.7em;
   text-align: right;
 }
+
+.close{
+  float: right;
+  color: red;
+}
