@@ -1,29 +1,33 @@
+
 body {
-  background-color: #00AABB;
+
+}
+/*default*/
+.projects-menu{
+  padding-right: 0;
 }
 
-article {
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  background-color: white;
+/*sm*/
+@media (min-width: 576px) {
+
 }
 
-article header {
-  font-weight: bold;
-  font-size: 1.3em;
+/*md*/
+@media (min-width: 768px) {
+
 }
 
-article footer {
-  font-weight: lighter;
-  font-size: 0.7em;
-  text-align: right;
+/*lg*/
+@media (min-width: 992px) {
+  .projects-menu{
+    padding-right: 20em;
+  }
 }
 
-.close{
-  float: right;
-  color: red;
+@media (min-width: 1200px) {
+
+}
+
+.no-href{
+  cursor: pointer;
 }

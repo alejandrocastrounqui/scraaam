@@ -1,17 +1,14 @@
 import { Component }      from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PostService }    from "../services/post.service"
+import { PostService }    from '../../services/post';
+
 
 @Component({
-  selector: 'postDetail',
+  selector: 'local-post-view',
   inputs: [ 'post' ],
-  template: `
-            <post [data]="post"></post>
-            <h2>Comentarios:</h2>
-            <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
-            `
+  template: require('./template.html')
 })
-export class PostDetailComponent {
+export class PostView {
 
   constructor(route: ActivatedRoute, postService:PostService) {
     this.route = route

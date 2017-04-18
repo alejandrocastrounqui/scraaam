@@ -1,0 +1,39 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-faded bg-inverse" role="navigation">
+    <a href="/poncho/" class="navbar-brand">
+      <span>Scraaam</span>
+      <!--
+      <img alt="Poncho" src="images/Logo_MinProd.png" height="50">
+      -->
+    </a>
+    <ul class="nav navbar-nav mr-lg-auto ml-lg-auto ml-md-0 mr-md-0 projects-menu">
+      <!--
+      <li class="nav-item"><a class="nav-link" href="/poncho/">¿Cómo exportar?</a></li>
+      -->
+      <li class="nav-item dropdown" ngbDropdown>
+        <a ngbDropdownToggle class="dropdown-toggle nav-link no-href" data-toggle="dropdown">
+          <span *ngIf="!project">projectos</span>
+          <span *ngIf="project">{{project.name}}</span>
+           <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu bg-inverse" role="menu">
+          <li class="dropdown-item bg-inverse nav-item"
+            *ngFor="let project of projects">
+            <a class="nav-link no-href" [routerLink]="['/project', project._id]">{{ project.name }}</a>
+          </li>
+          <li class="dropdown-item bg-inverse nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="nav-item dropdown" ngbDropdown>
+        <a ngbDropdownToggle href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <span>Alejandro Castro</span> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu bg-inverse" role="menu">
+          <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Cuenta</a></li>
+          <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Cerrar sesión</a></li>
+        </ul>
+      </li>
+    </ul>
+
+</nav>

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 // Mongoose models and schemas
-const commentSchema = new mongoose.Schema({
+const noticiaCommentSchema = new mongoose.Schema({
   body: String,
   author: String,
   upvotes: { type: Number, default: 0 },
@@ -9,6 +9,6 @@ const commentSchema = new mongoose.Schema({
   post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
 })
 
-const Comment = mongoose.model('Comment', commentSchema)
+const NoticiaComment = mongoose.model('NoticiaComment', noticiaCommentSchema)
 
-export default Comment
+export default NoticiaComment

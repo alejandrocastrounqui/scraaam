@@ -1,12 +1,12 @@
 import express from 'express'
 
 import Post from '../models/Post.js'
-import Comment from '../models/Comment.js'
+import NoticiaComment from '../models/NoticiaComment.js'
 
-let router = express.Router()
+let noticias = express.Router()
 
 // Express routes
-router.param('noticia', (req, res, next, value) => {
+noticias.param('noticia', (req, res, next, value) => {
   Post.findById(value)
     .then(noticia => {
       if (! noticia ) {
@@ -18,26 +18,26 @@ router.param('noticia', (req, res, next, value) => {
     .catch(next)
 })
 
-router.get('/noticias', (req, res, next) => {
+noticias.get('/noticias', (req, res, next) => {
   Post.find()
     .then(noticias => res.json(noticias))
     .catch(next)
 })
 
-router.post('/noticias', (req, res, next) => {
+noticias.post('/noticias', (req, res, next) => {
   const noticia = new Post(req.body)
   noticia.save()
     .then(noticia => res.json(noticia.id))
     .catch(next)
 })
 
-router.get('/noticias/:noticia', (req, res, next) => {
+noticias.get('/noticias/:noticia', (req, res, next) => {
   req.noticia.populate('comments').execPopulate()
     .then(noticiaCompleta => res.json(noticiaCompleta))
     .catch(next)
 })
 
-router.put('/noticias/:noticia/upvote', (req, res, next) => {
+noticias.put('/noticias/:noticia/upvote', (req, res, next) => {
   const noticia = req.noticia
   noticia.upvote()
   noticia.save()
@@ -45,9 +45,9 @@ router.put('/noticias/:noticia/upvote', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/noticias/:noticia/comentarios', (req, res, next) => {
+noticias.post('/noticias/:noticia/comentarios', (req, res, next) => {
   const noticia = req.noticia
-  let comentario = new Comment(req.body)
+  let comentario = new NoticiaComment(req.body)
   comentario.post = noticia
   comentario.save()
     .then(comentarioGuardado => {
@@ -62,4 +62,4 @@ router.post('/noticias/:noticia/comentarios', (req, res, next) => {
     .catch(next)
 })
 
-export default router
+export default noticias

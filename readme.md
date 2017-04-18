@@ -6,14 +6,14 @@
 mongod --dbpath mongo_data
 ```
 
-### Initialize server
+### Initialize backend server
 
 ```
-npm start
+npm run backend
 ```
 
-### compile app dinamycally
+### Initialize frontend application and compile dinamycally
 
 ```
-node node_modules/webpack/bin/webpack.js --progress --watch
+npm run frontend
 ```

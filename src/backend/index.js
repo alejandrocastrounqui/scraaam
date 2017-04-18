@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 
 // Connects to mongoose
 import mongoose from 'mongoose'
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/news')
 
 // Express configuration
@@ -11,8 +12,11 @@ app.use(bodyParser.json())
 
 app.use(express.static(__dirname + "/../../dist/frontend"))
 
-import routes from './routes/routes.js'
-app.use(routes)
+import noticias from './routes/noticias.js'
+app.use(noticias)
+
+import project from './routes/project.js'
+app.use(project)
 
 // Express startup
 const port = 3001

@@ -1,0 +1,7 @@
+<local-post-summary
+  *ngFor="let item of posts"
+  [data]="item"
+  [routerLink]="['/noticia', item._id]">
+</local-post-summary>
+<local-post-create>
+</local-post-create>
