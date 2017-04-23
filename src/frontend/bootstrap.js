@@ -25,8 +25,12 @@ import { PostCreate }          from './components/post/create/index'
 import { PostList }            from './components/post/list/index'
 import { PostSummary }         from './components/post/summary/index'
 
-
 import { ProjectService }      from './services/project'
+import { MilestoneService }    from './services/milestone'
+
+
+import { MilestoneView }       from './components/milestone/view/index'
+import { MilestoneList }       from './components/milestone/list/index'
 
 import { ProjectView }         from './components/project/view/index'
 
@@ -44,7 +48,14 @@ let routes = [{
     component: Dashboard
   },{
     path: 'project/:projectId',
-    component: ProjectView
+    component: ProjectView,
+    children: [{
+      path: '',
+      component: MilestoneList
+    },{
+      path: 'milestone/:milestoneId',
+      component: MilestoneView
+    }]
   },{
     path: 'noticias',
     component: PostList
@@ -82,11 +93,14 @@ let router = RouterModule.forRoot(routes, routerOptions)
     ProjectView,
     ProjectCreate,
     ProjectCreateForm,
-    ProjectCreateModal
+    ProjectCreateModal,
+    MilestoneView,
+    MilestoneList
   ],
   providers: [
     PostService,
-    ProjectService
+    ProjectService,
+    MilestoneService
   ],
   entryComponents: [
     ProjectCreateModal

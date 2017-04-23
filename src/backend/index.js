@@ -18,6 +18,12 @@ app.use(noticias)
 import project from './routes/project.js'
 app.use(project)
 
+import milestone from './routes/milestone.js'
+app.use(milestone)
+
+import epic from './routes/epic.js'
+app.use(epic)
+
 // Express startup
 const port = 3001
 app.listen(port, () => console.log(`Server running on port ${port}`))

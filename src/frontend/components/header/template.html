@@ -1,25 +1,28 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-faded bg-inverse" role="navigation">
-    <a href="/poncho/" class="navbar-brand">
+    <a href="#" class="navbar-brand">
       <span>Scraaam</span>
       <!--
       <img alt="Poncho" src="images/Logo_MinProd.png" height="50">
       -->
     </a>
+
     <ul class="nav navbar-nav mr-lg-auto ml-lg-auto ml-md-0 mr-md-0 projects-menu">
-      <!--
-      <li class="nav-item"><a class="nav-link" href="/poncho/">¿Cómo exportar?</a></li>
-      -->
-      <li class="nav-item dropdown" ngbDropdown>
+
+      <li *ngIf="!projects.length" class="bg-inverse nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
+
+      <li *ngIf="projects.length" class="nav-item dropdown" ngbDropdown>
         <a ngbDropdownToggle class="dropdown-toggle nav-link no-href" data-toggle="dropdown">
-          <span *ngIf="!project">projectos</span>
-          <span *ngIf="project">{{project.name}}</span>
+          <span *ngIf="!project.name">projectos</span>
+          <span *ngIf="project.name">{{project.name}}</span>
            <b class="caret"></b>
         </a>
         <ul class="dropdown-menu bg-inverse" role="menu">
+          <ng-container *ngFor="let projectItem of projects">
           <li class="dropdown-item bg-inverse nav-item"
-            *ngFor="let project of projects">
-            <a class="nav-link no-href" [routerLink]="['/project', project._id]">{{ project.name }}</a>
+             *ngIf="projectItem._id != project._id">
+            <a class="nav-link no-href" [routerLink]="['/project', projectItem._id]">{{ projectItem.name }}</a>
           </li>
+          </ng-container>
           <li class="dropdown-item bg-inverse nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
         </ul>
       </li>

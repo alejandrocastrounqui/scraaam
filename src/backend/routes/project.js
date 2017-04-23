@@ -33,14 +33,20 @@ project.post('/project', (req, res, next) => {
 
 project.get('/project/:projectId', (req, res, next) => res.json(req.project))
 
-project.put('/project/:projectId/milestones', (req, res, next) => {
+project.get('/project/:projectId/milestones', (req, res, next) => {
+  req.project.populate('milestones').execPopulate()
+    .then(project => res.json(project.milestones))
+    .catch(next)
+})
+
+project.post('/project/:projectId/milestones', (req, res, next) => {
   if(typeof req.body != 'object' || !Array.isArray(req.body)){
     throw new Error(`milestones exptected`)
   }
   const milestonesPromises = req.body.map(milestone => {
-    const milestonesEntitiy = new Milestone(milestone)
-    milestonesEntitiy.project = req.project
-    return milestonesEntitiy.save()
+    const milestoneEntity = new Milestone(milestone)
+    milestoneEntity.project = req.project
+    return milestoneEntity.save()
   })
   Promise.all(milestonesPromises)
     .then(milestoneEntities => {

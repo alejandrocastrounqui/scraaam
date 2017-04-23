@@ -1,0 +1,11 @@
+curl -v -X POST -H "Content-Type: application/json" -d "{\"name\":\"thirdProject\"}" http://localhost:3001/project
+curl http://localhost:3001/project
+curl http://localhost:3001/project/58f4361b89901f2ba46cff93
+curl http://localhost:3001/project/58f4361b89901f2ba46cff93/milestones
+
+curl -v -X POST -H "Content-Type: application/json" -d "[{\"name\":\"firstMilestone\"}]" http://localhost:3001/project/58f4361b89901f2ba46cff93/milestones
+curl http://localhost:3001/milestone
+curl http://localhost:3001/milestone/58f427c6c262e7254eee90a7
+
+curl -v -X POST -H "Content-Type: application/json" -d "[{\"description\":\"firstEpic\"}]" http://localhost:3001/milestone/58f4363489901f2ba46cff94/epics
+curl http://localhost:3001/milestone/58f4363489901f2ba46cff94/epics
