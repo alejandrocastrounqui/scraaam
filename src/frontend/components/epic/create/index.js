@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'local-milestone-create',
+  selector: 'local-epic-create',
   template: require('./template.html')
 })
-export class MilestoneCreate {
+export class EpicCreate {
 
   constructor() {
 

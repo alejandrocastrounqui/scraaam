@@ -17,20 +17,15 @@ export class ProjectCreateForm {
   createProject() {
     this.submitted = true
     if(this.projectCreateForm.invalid){
-      return Promise.reject()
+      return this.hideActions && Promise.reject()
     }
     this.processing = true
     let project = {
       name: this.data.name
     }
-    let router = this.router
     return this.projectService.create(project)
       .then(() =>{
-        console.log(project._id)
-        router.navigateByUrl('/project/' + project._id)
-      })
-      .catch((error) =>{
-        console.log(error)
+        this.router.navigateByUrl('/project/' + project.id)
       })
   }
 }

@@ -3,9 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../../services/project';
 import { Observer }       from '../../../extra/observer';
 
+
 @Component({
   selector: 'local-project-view',
-  template: require('./template.html')
+  template: require('./template.html')/*,
+  styles: [require('./style.css')]*/
 })
 export class ProjectView extends Observer{
 

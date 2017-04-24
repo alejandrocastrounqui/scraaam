@@ -1,7 +1,22 @@
 
 body {
-
+  overflow-y: hidden;
 }
+body:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: -2;
+    left: 0;
+    right: 0;
+    background-image: -webkit-radial-gradient(top, circle cover, #393b45 0%, #2d3038 70%);
+    background-image: -moz-radial-gradient(center, circle cover, #393b45 0%, #2d3038 70%);
+    background-image: -o-radial-gradient(center, circle cover, #393b45 0%, #2d3038 70%);
+    background-image: radial-gradient(center, circle cover, #393b45 0%, #2d3038 70%);
+    background-position: 50%, 50%;
+}
+
 /*default*/
 .projects-menu{
   padding-right: 0;
@@ -30,4 +45,77 @@ body {
 
 .no-href{
   cursor: pointer;
+}
+.route-info{
+  background-color: #FFF;
+}
+.route-info a{
+  font-weight: bold;
+  text-decoration: none;
+  color: #555;
+}
+.route-info a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.left-panel{
+  background-color: #24262d;
+  color: #EEE;
+  padding-bottom: 9999px;
+  margin-bottom: -9999px;
+}
+
+.separate-y{
+  width: 100%;
+  border-bottom-color: #333;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+button.btn,
+input.form-control{
+  border-radius: 0;
+}
+
+
+
+/*project/view/style.css*/
+.project-view{
+  color: #949ba2;
+}
+
+.milestone-list .heading{
+  padding-top: 10px;
+}
+
+/*milestone/list/style.css*/
+
+.milestone-list ul.milestones-list-items{
+  padding-left: 0px;
+}
+.milestone-list .milestones-list-items li{
+  display: block;
+}
+.milestone-list .milestones-list-items a,
+.milestone-list .milestones-list-items a:hover{
+  cursor: pointer;
+  color: #eee;
+  text-decoration: none;
+  display: block;
+}
+
+.milestone-list .milestones-list-items a:hover{
+  color: #fff;
+}
+
+/*dashboard*/
+.dashboard{
+  color: #949ba2;
+  padding-top: 10px;
+}
+
+.dashboard h1{
+  font-size: 30px;
+  color: #bbb;
 }

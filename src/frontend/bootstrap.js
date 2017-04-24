@@ -27,14 +27,21 @@ import { PostSummary }         from './components/post/summary/index'
 
 import { ProjectService }      from './services/project'
 import { MilestoneService }    from './services/milestone'
+import { EpicService }         from './services/epic'
 
 
 import { MilestoneView }       from './components/milestone/view/index'
 import { MilestoneList }       from './components/milestone/list/index'
+import { MilestoneCreate }     from './components/milestone/create/index'
+import { MilestoneCreateForm } from './components/milestone/create/form/index'
+
+import { EpicView }            from './components/epic/view/index'
+import { EpicList }            from './components/epic/list/index'
+import { EpicCreate }          from './components/epic/create/index'
+import { EpicCreateForm }      from './components/epic/create/form/index'
 
 import { ProjectView }         from './components/project/view/index'
 
-import { ProjectCreate }       from './components/project/create/index'
 import { ProjectCreateForm }   from './components/project/create/form/index'
 import { ProjectCreateModal }  from './components/project/create/modal/index'
 
@@ -51,10 +58,17 @@ let routes = [{
     component: ProjectView,
     children: [{
       path: '',
-      component: MilestoneList
-    },{
-      path: 'milestone/:milestoneId',
       component: MilestoneView
+    },{
+      path: 'milestones/:milestoneId',
+      component: MilestoneView,
+      children: [{
+        path: '',
+        component: EpicView
+      },{
+        path: 'epics/:epicId',
+        component: EpicView
+      }]
     }]
   },{
     path: 'noticias',
@@ -91,16 +105,22 @@ let router = RouterModule.forRoot(routes, routerOptions)
     PostList,
     PostSummary,
     ProjectView,
-    ProjectCreate,
     ProjectCreateForm,
     ProjectCreateModal,
     MilestoneView,
-    MilestoneList
+    MilestoneList,
+    MilestoneCreate,
+    MilestoneCreateForm,
+    EpicView,
+    EpicList,
+    EpicCreate,
+    EpicCreateForm
   ],
   providers: [
     PostService,
     ProjectService,
-    MilestoneService
+    MilestoneService,
+    EpicService
   ],
   entryComponents: [
     ProjectCreateModal

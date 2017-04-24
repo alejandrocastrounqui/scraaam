@@ -3,12 +3,12 @@ import { ProjectService }  from '../../../../services/project';
 import { Observer }        from '../../../../extra/observer';
 
 @Component({
-  selector: 'local-milestone-create-form',
+  selector: 'local-epic-create-form',
   template: require('./template.html')
 })
-export class MilestoneCreateForm extends Observer{
+export class EpicCreateForm extends Observer{
   @Input() hideActions
-  @ViewChild('milestoneCreateForm') milestoneCreateForm;
+  @ViewChild('epicCreateForm') epicCreateForm;
   constructor(projectService:ProjectService) {
     super()
     this.projectService = projectService
@@ -22,14 +22,14 @@ export class MilestoneCreateForm extends Observer{
   }
   createProject() {
     this.submitted = true
-    if(this.milestoneCreateForm.invalid){
+    if(this.epicCreateForm.invalid){
       return this.hideActions && Promise.reject()
     }
     this.processing = true
-    let milestone = {
+    let epic = {
       name: this.data.name
     }
-    return this.project.addMilestone(milestone)
+    return this.project.addEpic(epic)
       .then(() => {
         this.processing = false
       })

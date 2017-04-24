@@ -1,2 +1,14 @@
-<h5>vista de listado de milestones</h5>
-<p></p>
+<div class="milestones-list">
+  <div class="heading">
+    <h5>milestones</h5>
+  </div>
+  <span *ngIf="!project || !project.milestones.length">este proyecto no posee milestones aún</span>
+  <ul class="milestones-list-items" *ngIf="project && project.milestones.length">
+    <li *ngFor="let milestone of project.milestones">
+      <a [routerLink]="['/project', project.id, 'milestones', milestone.id]">
+        <span>{{milestone.name}}</span>
+      </a>
+    </li>
+  </ul>
+  <local-milestone-create></local-milestone-create>
+</div>

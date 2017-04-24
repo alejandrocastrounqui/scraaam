@@ -4,8 +4,8 @@ export class Service{
 
   constructor() {
     this._cache = {}
-    this._current = new BehaviorSubject({})
-    this._creation = new BehaviorSubject({})
+    this._current = new BehaviorSubject()
+    this._creation = new BehaviorSubject()
   }
   get current() {
     return this._current
@@ -13,11 +13,10 @@ export class Service{
   set currentId(nextId) {
     if(nextId){
       this.getById(nextId)
-      .then( project => this._current.next(project) )
-      .catch(e => console.log(e));
+        .then( project => this._current.next(project) )
     }
     else{
-      this.current.next({})
+      this.current.next()
     }
   }
   get creation() {
@@ -51,9 +50,13 @@ export class Service{
     return this.http.post(`/${this.path}`, raw)
       .toPromise()
       .then(response => {
-        instance._id = response.json()
+        const id = response.json()
+        const instance = raw
+        instance._id = id
         instance.__v = 0
+        this.transform(instance)
         this.afterCreate(instance)
+        this._cache[id] = instance
         return instance
       })
   }

@@ -10,7 +10,6 @@
         #name="ngModel"
         [(ngModel)]="data.name">
     </div>
-    {{projectCreateForm.name}}
     <div [hidden]="!submitted || name.valid"
          class="alert alert-danger">
       Debe ingresar un valor

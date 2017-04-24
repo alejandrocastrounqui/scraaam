@@ -14,7 +14,10 @@ export class ProjectService extends Service{
 
   transform(project) {
     super.transform(project)
+    project.milestonesIds = project.milestones
+    project.milestones = []
     project.getMilestones = () => this.getMilestones(project)
+    project.addMilestone = (milestone) => this.addMilestone(project, milestone)
   }
 
   getAll() {
@@ -35,31 +38,35 @@ export class ProjectService extends Service{
         }
         return projects
       })
-      .catch(err => console.log(err))
   }
   getMilestones(project) {
-    console.log('getting  milestones from: ' + project.name)
+    if(project.milestonesLoaded){
+      return Promise.resolve(project.milestones)
+    }
     return this.http.get(`/project/${project.id}/milestones`)
       .toPromise()
       .then(response => {
+        project.milestonesLoaded = true
         let milestones = response.json()
-        project.milestonesList = milestones
+        //TODO: consolidar con cache
+        for(let index = 0, length = milestones.length; index < length; index ++){
+          milestones[index].id = milestones[index]._id
+        }
+        project.milestones.splice(0, project.milestones.length, ...milestones)
         return milestones
       })
-      .catch(err => console.log(err))
   }
   addMilestone(project, milestone) {
-    return this.http.post(`/project/${project.id}/milestones` , JSON.stringify([milestone]))
+    return this.http.post(`/project/${project.id}/milestones` , [milestone])
       .toPromise()
       .then(response => {
         milestone.id = response.json()[0]
         milestone.__v = 0
-        if(project.milestonesList){
-          project.milestonesList.push(milestone)
+        if(project.milestones){
+          project.milestones.push(milestone)
         }
         return milestone
       })
-      .catch(err => console.log(err))
   }
 
 }

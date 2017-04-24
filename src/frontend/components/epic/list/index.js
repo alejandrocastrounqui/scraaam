@@ -4,10 +4,10 @@ import { ProjectService }   from '../../../services/project';
 import { Observer }         from '../../../extra/observer';
 
 @Component({
-  selector: 'local-milestone-list',
+  selector: 'local-epic-list',
   template: require('./template.html')
 })
-export class MilestoneList extends Observer{
+export class EpicList extends Observer{
   @Input() project
   constructor(route: ActivatedRoute, projectService:ProjectService) {
     super()
@@ -20,7 +20,7 @@ export class MilestoneList extends Observer{
       if(this.project == project){ return }
       this.project = project
       if(!project){ return }
-      project.getMilestones()
+      project.getEpics()
     })
 
   }
