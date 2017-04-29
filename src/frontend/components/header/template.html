@@ -36,3 +36,12 @@
     </li>
   </ul>
 </nav>
+<div class="container-fluid">
+  <div class="row route-info">
+    <div class="col-sm-12" *ngIf="project">
+      <a class="no-href" [routerLink]="['/project', project.id]">{{project.name}}</a>
+      <span>milestones</span>
+    </div>
+  </div>
+  <div class="row"><div class="separate-y"></div></div>
+</div>

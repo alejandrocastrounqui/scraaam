@@ -57,6 +57,7 @@ export class ProjectService extends Service{
       })
   }
   addMilestone(project, milestone) {
+
     return this.http.post(`/project/${project.id}/milestones` , [milestone])
       .toPromise()
       .then(response => {
