@@ -1,35 +1,28 @@
-import { Component }      from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProjectService } from '../../../services/project';
-import { Observer }       from '../../../extra/observer';
-
+import { Component }        from '@angular/core';
+import { ProjectService }   from '../../../services/project';
+import { MilestoneService } from '../../../services/milestone';
+import { Observer }         from '../../../extra/observer';
 
 @Component({
   selector: 'local-project-view',
-  template: require('./template.html')/*,
-  styles: [require('./style.css')]*/
+  template: require('./template.html')
 })
 export class ProjectView extends Observer{
 
-  constructor(route: ActivatedRoute, projectService:ProjectService) {
+  constructor(projectService:ProjectService, milestoneService:MilestoneService) {
     super()
-    this.route = route
-    this.project = {}
     this.projectService = projectService
+    this.milestoneService = milestoneService
   }
 
   ngOnInit() {
     super.ngOnInit()
     this.subscribe(this.projectService.current, project => {
       this.project = project
+      if(project && !this.milestoneService.currentId){
+        this.milestoneService.currentId = project.milestones[0]
+      }
     })
-    this.subscribe(this.route.params, params => {
-      this.projectService.currentId = params.projectId
-    });
-  }
-  ngOnDestroy() {
-    super.ngOnDestroy()
-    this.projectService.currentId = null
   }
 
 }

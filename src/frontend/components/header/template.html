@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-faded bg-inverse" role="navigation">
+<nav class="navbar navbar-toggleable-md bg-faded bg-inverse" role="navigation">
   <a href="#" class="navbar-brand">
     <span>Scraaam</span>
     <!--
@@ -6,21 +6,21 @@
     -->
   </a>
   <ul class="nav navbar-nav mr-lg-auto ml-lg-auto ml-md-0 mr-md-0 projects-menu">
-    <li *ngIf="!projects || !projects.length" class="bg-inverse nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
+    <li *ngIf="!projects || !projects.length" class="nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
     <li *ngIf="projects && projects.length" class="nav-item dropdown" ngbDropdown>
       <a ngbDropdownToggle class="dropdown-toggle nav-link no-href" data-toggle="dropdown">
         <span *ngIf="!project || !project.name">projectos</span>
         <span *ngIf="project && project.name">{{project.name}}</span>
          <b class="caret"></b>
       </a>
-      <ul class="dropdown-menu bg-inverse" role="menu">
+      <ul class="dropdown-menu " role="menu">
         <ng-container *ngFor="let projectItem of projects">
-        <li class="dropdown-item bg-inverse nav-item"
-           *ngIf="!project || projectItem.id != project.id">
-          <a class="nav-link no-href" [routerLink]="['/project', projectItem.id]">{{ projectItem.name }}</a>
-        </li>
+          <li class="dropdown-item  nav-item"
+             *ngIf="projectItem && (!project || projectItem.id != project.id)">
+            <a class="nav-link no-href" [routerLink]="['/project', projectItem.id]">{{ projectItem.name }}</a>
+          </li>
         </ng-container>
-        <li class="dropdown-item bg-inverse nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
+        <li class="dropdown-item nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
       </ul>
     </li>
   </ul>

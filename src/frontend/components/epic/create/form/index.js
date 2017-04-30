@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild} from '@angular/core';
-import { ProjectService }  from '../../../../services/project';
+import { MilestoneService }  from '../../../../services/milestone';
 import { Observer }        from '../../../../extra/observer';
 
 @Component({
@@ -9,15 +9,15 @@ import { Observer }        from '../../../../extra/observer';
 export class EpicCreateForm extends Observer{
   @Input() hideActions
   @ViewChild('epicCreateForm') epicCreateForm;
-  constructor(projectService:ProjectService) {
+  constructor(milestoneService:MilestoneService) {
     super()
-    this.projectService = projectService
+    this.milestoneService = milestoneService
     this.data = {}
   }
   ngOnInit() {
     super.ngOnInit()
-    this.subscribe(this.projectService.current, current => {
-      this.project = current
+    this.subscribe(this.milestoneService.current, current => {
+      this.milestone = current
     })
   }
   createProject() {
@@ -29,9 +29,11 @@ export class EpicCreateForm extends Observer{
     let epic = {
       name: this.data.name
     }
-    return this.project.addEpic(epic)
+    return this.milestone.addEpic(epic)
       .then(() => {
         this.processing = false
+        this.submitted = false
+        this.data.name = ''
       })
   }
 }

@@ -73,12 +73,35 @@ body:before {
   border-bottom-width: 1px;
 }
 
-button.btn,
-input.form-control{
+
+.cave-theme .alert,
+.cave-theme button.btn,
+.cave-theme input.form-control{
   border-radius: 0;
 }
 
+.cave-theme .alert{
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
+.cave-theme .dropdown-item:focus,
+.cave-theme .dropdown-item:hover,
+.cave-theme .dropdown-menu{
+  background-color: #292b2c;
+}
+
+.cave-theme .navbar-nav .nav-link:focus,
+.cave-theme .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+.cave-theme .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cave-theme .navbar-brand{
+  color: #fff;
+}
 
 /*project/view/style.css*/
 .project-view{
@@ -87,6 +110,14 @@ input.form-control{
 
 .milestone-list .heading{
   padding-top: 10px;
+}
+
+.milestones-detail .heading{
+  padding-top: 10px;
+}
+
+.milestones-detail .heading p{
+  margin-bottom: 5px;
 }
 
 /*milestone/list/style.css*/

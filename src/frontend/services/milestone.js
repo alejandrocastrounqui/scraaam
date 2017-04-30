@@ -4,12 +4,12 @@ import { Service }  from '../jshttpc/service';
 
 @Injectable()
 export class MilestoneService  extends Service{
+
+  path = 'milestone'
+
   constructor(http : Http) {
     super()
     this.http = http
   }
-  
-  path = 'milestones'
 
-  epics = this.hasMany('epic')
 }

@@ -14,12 +14,10 @@ export class ProjectCreateModal {
   createProject(){
     let modal = this.activeModal
     this.projectCreateForm.createProject()
-      .then(()=>{
-        modal.close()
-      })
-      .catch(()=>{
-        console.log('do nothing')
-      })
+    .then(()=>{
+      modal.close()
+    })
+    .catch(()=>{/*do nothing*/})
   }
 
 }

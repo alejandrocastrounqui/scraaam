@@ -4,18 +4,32 @@ export class Service{
 
   constructor() {
     this._cache = {}
+    this._currentId = null;
+    this._currentRetrive = {};
     this._current = new BehaviorSubject()
     this._creation = new BehaviorSubject()
   }
   get current() {
     return this._current
   }
+  get currentId() {
+    return this._currentId
+  }
   set currentId(nextId) {
+    if(this._currentId == nextId) {return}
+    this._currentId = nextId
+    this._currentRetrive.cancell = true;
+    let nextRetrive = {}
+    this._currentRetrive = nextRetrive
     if(nextId){
-      this.getById(nextId)
-        .then( project => this._current.next(project) )
-    }
+      this._currentId = nextId
+      this.getById(nextId).then(project => {
+      if(nextRetrive.cancell){return}
+      this._current.next(project)
+    })}
     else{
+      this._currentRetrive.cancell = true;
+      this._currentRetrive = {}
       this.current.next()
     }
   }
@@ -29,19 +43,20 @@ export class Service{
   getById(id) {
     const inCache = this._cache[id]
     if(inCache){
+      if(inCache.then){
+        return inCache
+      }
       return Promise.resolve(inCache)
     }
-    return this.http.get(`/${this.path}/${id}`)
-      .toPromise()
-      .then(response => {
-        const inCache = this._cache[id]
-        if(inCache){
-          return inCache
-        }
-        let instance = response.json()
-        this.transform(instance)
-        return instance
-      })
+    let promise = new Promise((resolve, reject)=>{
+      this.http.get(`/${this.path}/${id}`).toPromise().then(response => {
+      let instance = response.json()
+      this.transform(instance)
+      this._cache[id] = instance
+      resolve(instance)
+    })})
+    this._cache[id] = promise
+    return promise
   }
   beforeCreate(raw) {}
   afterCreate(instance) {}

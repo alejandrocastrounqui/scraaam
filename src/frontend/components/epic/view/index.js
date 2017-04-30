@@ -16,21 +16,16 @@ export class EpicView {
   ngOnInit() {
     var controller = this
     this.handler = this.route.params.subscribe(params => {
-      console.log(params)
-      console.log(params['id'])
-      console.log(params['epicId'])
       if(params.epicId){
         this.epicService.getById(params.epicId)
         .then(rawEpic =>{
           controller.epic = rawEpic
         })
-        .catch(e => console.log(e));
       }
     });
   }
 
   ngOnDestroy() {
-    console.log('ondestroy')
     this.handler.unsubscribe();
   }
 

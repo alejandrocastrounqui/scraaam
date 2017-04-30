@@ -32,6 +32,8 @@ export class MilestoneCreateForm extends Observer{
     return this.project.addMilestone(milestone)
       .then(() => {
         this.processing = false
+        this.submitted = false
+        this.data.name = ''
       })
   }
 }

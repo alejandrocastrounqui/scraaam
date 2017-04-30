@@ -11,27 +11,25 @@ import { RouterModule }  from '@angular/router'
 import { HttpModule }    from '@angular/http'
 import 'rxjs/add/operator/toPromise'
 
-import { PostService }         from './services/post'
-
 import { MainView }            from './components/main/index'
 
 import { Dashboard }           from './components/dashboard/index'
 
 import { HeaderView }          from './components/header/index'
 
-import { CommentView }         from './components/comment/index'
-import { PostView }            from './components/post/index'
-import { PostCreate }          from './components/post/create/index'
-import { PostList }            from './components/post/list/index'
-import { PostSummary }         from './components/post/summary/index'
-
 import { ProjectService }      from './services/project'
 import { MilestoneService }    from './services/milestone'
 import { EpicService }         from './services/epic'
 
+import { ProjectRoute }       from './routes/project/index'
+import { MilestoneRoute }     from './routes/milestone/index'
 
-import { MilestoneView }       from './components/milestone/view/index'
-import { MilestoneList }       from './components/milestone/list/index'
+import { ProjectView }         from './components/project/view/index'
+import { ProjectCreateForm }   from './components/project/create/form/index'
+import { ProjectCreateModal }  from './components/project/create/modal/index'
+
+import { MilestoneLink }       from './components/milestone/link/index'
+import { MilestoneDetail }     from './components/milestone/detail/index'
 import { MilestoneCreate }     from './components/milestone/create/index'
 import { MilestoneCreateForm } from './components/milestone/create/form/index'
 
@@ -40,10 +38,6 @@ import { EpicList }            from './components/epic/list/index'
 import { EpicCreate }          from './components/epic/create/index'
 import { EpicCreateForm }      from './components/epic/create/form/index'
 
-import { ProjectView }         from './components/project/view/index'
-
-import { ProjectCreateForm }   from './components/project/create/form/index'
-import { ProjectCreateModal }  from './components/project/create/modal/index'
 
 
 let routes = [{
@@ -55,27 +49,10 @@ let routes = [{
     component: Dashboard
   },{
     path: 'project/:projectId',
-    component: ProjectView,
-    children: [{
-      path: '',
-      component: MilestoneView
-    },{
-      path: 'milestones/:milestoneId',
-      component: MilestoneView,
-      children: [{
-        path: '',
-        component: EpicView
-      },{
-        path: 'epics/:epicId',
-        component: EpicView
-      }]
-    }]
+    component: ProjectRoute,
   },{
-    path: 'noticias',
-    component: PostList
-  },{
-    path: 'noticia/:id',
-    component: PostView
+    path: 'milestone/:milestoneId',
+    component: MilestoneRoute
 }];
 
 let routerOptions = {
@@ -99,16 +76,13 @@ let router = RouterModule.forRoot(routes, routerOptions)
     MainView,
     HeaderView,
     Dashboard,
-    CommentView,
-    PostView,
-    PostCreate,
-    PostList,
-    PostSummary,
+    ProjectRoute,
+    MilestoneRoute,
     ProjectView,
     ProjectCreateForm,
     ProjectCreateModal,
-    MilestoneView,
-    MilestoneList,
+    MilestoneLink,
+    MilestoneDetail,
     MilestoneCreate,
     MilestoneCreateForm,
     EpicView,
@@ -117,7 +91,6 @@ let router = RouterModule.forRoot(routes, routerOptions)
     EpicCreateForm
   ],
   providers: [
-    PostService,
     ProjectService,
     MilestoneService,
     EpicService
