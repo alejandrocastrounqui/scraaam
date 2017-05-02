@@ -6,23 +6,27 @@ import mongoose from 'mongoose'
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/news')
 
+import mappings from './mappings'
+
 // Express configuration
 const app = express()
 app.use(bodyParser.json())
 
 app.use(express.static(__dirname + "/../../dist/frontend"))
 
-import noticias from './routes/noticias.js'
-app.use(noticias)
+app.use(mappings.router)
 
-import project from './routes/project.js'
-app.use(project)
-
-import milestone from './routes/milestone.js'
-app.use(milestone)
-
-import epic from './routes/epic.js'
-app.use(epic)
+// import noticias from './routes/noticias.js'
+// app.use(noticias)
+//
+// import project from './routes/project.js'
+// app.use(project)
+//
+// import milestone from './routes/milestone.js'
+// app.use(milestone)
+//
+// import epic from './routes/epic.js'
+// app.use(epic)
 
 // Express startup
 const port = 3001

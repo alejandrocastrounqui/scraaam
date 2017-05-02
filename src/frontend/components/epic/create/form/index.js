@@ -20,7 +20,7 @@ export class EpicCreateForm extends Observer{
       this.milestone = current
     })
   }
-  createProject() {
+  createEpic() {
     this.submitted = true
     if(this.epicCreateForm.invalid){
       return this.hideActions && Promise.reject()

@@ -1,7 +1,8 @@
 import express from 'express'
 
-import Epic from '../models/Epic.js'
+import Project from '../models/Project.js'
 import Milestone from '../models/Milestone.js'
+import Epic from '../models/Epic.js'
 
 let milestone = express.Router()
 
@@ -22,6 +23,30 @@ milestone.get('/milestone', (req, res, next) => {
   Milestone.find()
     .then(milestones => res.json(milestones))
     .catch(next)
+})
+
+milestone.post('/milestone', (req, res, next) => {
+  const newMilestone = new Milestone(req.body)
+  const projectId = newMilestone.project
+  if(!projectId){
+    throw Error('No se puede crear un milestone sin su respectivo proyecto')
+  }
+  Project.findById(projectId)
+  .then(project => {
+    if (!project) {
+      throw new Error(`project id:${projectId} not found`)
+    }
+    newMilestone.project = project
+    return newMilestone.save()
+    .then(()=>{
+      project.milestones.push(newMilestone)
+      return project.save()
+    })
+    .then(()=>{
+      res.json(newMilestone.id)
+    })
+  })
+  .catch(next)
 })
 
 //TODO: hacer el update parcial
