@@ -61,7 +61,7 @@ const routeMapper = {
   }
 }
 
-var extend = function(src, dest){
+const extend = function(src, dest){
   for(let attrName in src){
     dest[attrName] = src[attrName]
   }

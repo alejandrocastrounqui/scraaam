@@ -1,21 +1,13 @@
 import { Injectable }      from '@angular/core';
 import { Http }            from '@angular/http';
-import { Service }         from '../jshttpc/service';
+import { Service }         from './service';
+import Project         from '../jshttpc/model/Project';
 
 @Injectable()
 export class ProjectService extends Service{
 
-  path = 'project'
-
   constructor(http : Http) {
-    super()
-    this.http = http
-  }
-
-  transform(project) {
-    super.transform(project)
-    //project.getMilestones = () => this.getMilestones(project)
-    project.addMilestone = (milestone) => this.addMilestone(project, milestone)
+    super(Project, http)
   }
 
   getAll() {
@@ -40,43 +32,12 @@ export class ProjectService extends Service{
           }
         }
         else{
-          this.transform(projects[index])
+          this.fromResponse(projects[index], projects[index])
           this._cache[id] = projects[index]
         }
       }
       return projects
     })
-  }
-  afterCreate(instance) {
-    instance.milestones = []
-  }
-  // getMilestones(project) {
-  //   if(project.milestonesLoaded){
-  //     return Promise.resolve(project.milestones)
-  //   }
-  //   return this.http.get(`/project/${project.id}/milestones`)
-  //     .toPromise()
-  //     .then(response => {
-  //       project.milestonesLoaded = true
-  //       let milestones = response.json()
-  //       //TODO: consolidar con cache
-  //       for(let index = 0, length = milestones.length; index < length; index ++){
-  //         milestones[index].id = milestones[index]._id
-  //       }
-  //       project.milestones.splice(0, project.milestones.length, ...milestones)
-  //       return milestones
-  //     })
-  // }
-
-  addMilestone(project, milestone) {
-    return this.http.post(`/project/${project.id}/milestones` , [milestone])
-      .toPromise()
-      .then(response => {
-        milestone.id = response.json()[0]
-        milestone.__v = 0
-        project.milestones.push(milestone.id)
-        return milestone
-      })
   }
 
 }

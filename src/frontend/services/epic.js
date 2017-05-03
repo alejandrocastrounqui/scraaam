@@ -1,19 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Http }       from '@angular/http';
-import { Service }    from '../jshttpc/service';
+import { Injectable }  from '@angular/core';
+import { Http }        from '@angular/http';
+import { Service }     from './service';
+import Epic            from '../jshttpc/model/Epic';
 
 @Injectable()
-export class EpicService {
+export class EpicService  extends Service{
+
   constructor(http : Http) {
-    this.http = http
+    super(Epic, http)
   }
-  getById(id) {
-    return this.http.get(`/epic/${id}`)
-      .toPromise()
-      .then(response => {
-        let epic = response.json()
-        return epic
-      })
-  }
-  epics = this.hasMany('epic')
+
 }

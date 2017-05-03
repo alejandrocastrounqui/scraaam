@@ -32,7 +32,7 @@ export class MilestoneCreateForm extends Observer{
     this.processing = true
     let milestone = {
       name: this.data.name,
-      project: project
+      project: this.project.id
     }
     return this.milestoneService.create(milestone)
       .then(() => {
