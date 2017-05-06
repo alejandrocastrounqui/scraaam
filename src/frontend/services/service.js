@@ -3,8 +3,8 @@ import { Angular2Service } from '../jshttpc/angular2service';
 
 export class Service extends Angular2Service{
 
-  constructor(model, http) {
-    super(model)
+  constructor(model, http, serviceProvider) {
+    super(model, serviceProvider)
     this.http = http
     this._cache = {}
     this._currentId = null;
@@ -26,9 +26,9 @@ export class Service extends Angular2Service{
     this._currentRetrive = nextRetrive
     if(nextId){
       this._currentId = nextId
-      this.getById(nextId).then(project => {
+      this.getById(nextId).then(instance => {
       if(nextRetrive.cancell){return}
-      this._current.next(project)
+      this._current.next(instance)
     })}
     else{
       this._currentRetrive.cancell = true;

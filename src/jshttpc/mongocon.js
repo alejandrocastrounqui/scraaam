@@ -55,7 +55,7 @@ const routeMapper = {
       }},
       afterCreate: function(localCTX){ return function(){
         localCTX.relatedInstance[relatedAttrName].push(localCTX.instance)
-        return relatedInstance.save()
+        return localCTX.relatedInstance.save()
       }}
     }
   }
@@ -116,7 +116,7 @@ const routerPostCreate = function(defaultsCTX){
         beforeCreate.push(routerMapping.beforeCreate(localCTX))
       }
       if(routerMapping.afterCreate){
-        afterCreate.shift(routerMapping.afterCreate(localCTX))
+        afterCreate.unshift(routerMapping.afterCreate(localCTX))
       }
     }
     let resolved = Promise.resolve()

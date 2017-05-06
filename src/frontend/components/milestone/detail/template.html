@@ -5,7 +5,7 @@
         <p class="text-info small">milestone</p>
         <h5 *ngIf="milestone">{{milestone.name}}</h5>
       </div>
-      <span *ngIf="!milestone || !milestone.epics.length">este proyecto no posee epics aún</span>
+      <span *ngIf="!milestone || !milestone.epicsIds.length">este proyecto no posee epics aún</span>
     </div>
     <div class="col-md-6">
       <local-epic-create></local-epic-create>

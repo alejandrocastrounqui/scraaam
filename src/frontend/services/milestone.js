@@ -1,13 +1,14 @@
-import { Injectable }  from '@angular/core';
-import { Http }        from '@angular/http';
-import { Service }     from './service';
-import Milestone       from '../jshttpc/model/Milestone';
+import { Injectable }      from '@angular/core';
+import { Http }            from '@angular/http';
+import { Service }         from './service';
+import { ServiceProvider } from './provider';
+import Milestone           from '../jshttpc/model/Milestone';
 
 @Injectable()
 export class MilestoneService  extends Service{
 
-  constructor(http : Http) {
-    super(Milestone, http)
+  constructor(http: Http, serviceProvider:ServiceProvider) {
+    super(Milestone, http, serviceProvider)
   }
 
 }

@@ -7,12 +7,12 @@
       <div class="milestones-list">
         <div class="heading">
           <h5>milestones
-          <span *ngIf="project" class="small text-info">(<span>{{project.milestones.length}}</span>)</span>
+          <span *ngIf="project" class="small text-info">(<span>{{project.milestonesIds.length}}</span>)</span>
           </h5>
         </div>
-        <span *ngIf="!project || !project.milestones.length">este proyecto no posee milestones aún</span>
-        <ul class="milestones-list-items" *ngIf="project && project.milestones.length">
-          <li *ngFor="let milestoneId of project.milestones">
+        <span *ngIf="!project || !project.milestonesIds.length">este proyecto no posee milestones aún</span>
+        <ul class="milestones-list-items" *ngIf="project && project.milestonesIds.length">
+          <li *ngFor="let milestoneId of project.milestonesIds">
             <local-milestone-link [milestoneId]="milestoneId"></local-milestone-link>
           </li>
         </ul>

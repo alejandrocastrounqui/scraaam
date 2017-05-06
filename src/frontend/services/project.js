@@ -1,13 +1,14 @@
 import { Injectable }      from '@angular/core';
 import { Http }            from '@angular/http';
 import { Service }         from './service';
-import Project         from '../jshttpc/model/Project';
+import { ServiceProvider } from './provider';
+import Project             from '../jshttpc/model/Project';
 
 @Injectable()
 export class ProjectService extends Service{
 
-  constructor(http : Http) {
-    super(Project, http)
+  constructor(http: Http, serviceProvider:ServiceProvider) {
+    super(Project, http, serviceProvider)
   }
 
   getAll() {
@@ -32,7 +33,7 @@ export class ProjectService extends Service{
           }
         }
         else{
-          this.fromResponse(projects[index], projects[index])
+          this.afterRetrive(projects[index], projects[index])
           this._cache[id] = projects[index]
         }
       }

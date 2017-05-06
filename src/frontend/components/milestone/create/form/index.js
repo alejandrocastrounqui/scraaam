@@ -31,10 +31,9 @@ export class MilestoneCreateForm extends Observer{
     }
     this.processing = true
     let milestone = {
-      name: this.data.name,
-      project: this.project.id
+      name: this.data.name
     }
-    return this.milestoneService.create(milestone)
+    return this.project.addToMilestones(milestone)
       .then(() => {
         this.processing = false
         this.submitted = false

@@ -18,9 +18,10 @@ export class ProjectRoute extends Observer{
 
   ngOnInit() {
     super.ngOnInit()
+    let localProject
     this.subscribe(this.projectService.current, project => {
-      if(project && !this.milestoneService.currentId){
-        this.milestoneService.currentId = project.milestones[0]
+      if(project && project != localProject){
+        this.milestoneService.currentId = project.milestonesIds[0]
       }
     })
     this.subscribe(this.route.params, params => {

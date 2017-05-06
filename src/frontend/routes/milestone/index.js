@@ -22,13 +22,13 @@ export class MilestoneRoute extends Observer{
     this.subscribe(this.milestoneService.current, milestone => {
       this.milestone = milestone
       if(milestone){
-        this.projectService.currentId = milestone.project
+        this.projectService.currentId = milestone.projectId
       }
     })
     this.subscribe(this.route.params, params => {
       this.milestoneService.currentId = params.milestoneId
     });
-    
+
   }
 
 }

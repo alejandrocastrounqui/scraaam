@@ -17,12 +17,16 @@ import { Dashboard }           from './components/dashboard/index'
 
 import { HeaderView }          from './components/header/index'
 
+
+
+import { ServiceProvider }     from './services/provider'
+
 import { ProjectService }      from './services/project'
 import { MilestoneService }    from './services/milestone'
 import { EpicService }         from './services/epic'
 
-import { ProjectRoute }       from './routes/project/index'
-import { MilestoneRoute }     from './routes/milestone/index'
+import { ProjectRoute }        from './routes/project/index'
+import { MilestoneRoute }      from './routes/milestone/index'
 
 import { ProjectView }         from './components/project/view/index'
 import { ProjectCreateForm }   from './components/project/create/form/index'
@@ -91,6 +95,7 @@ let router = RouterModule.forRoot(routes, routerOptions)
     EpicCreateForm
   ],
   providers: [
+    ServiceProvider,
     ProjectService,
     MilestoneService,
     EpicService

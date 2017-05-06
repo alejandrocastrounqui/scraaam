@@ -20,7 +20,7 @@ export class ProjectView extends Observer{
     this.subscribe(this.projectService.current, project => {
       this.project = project
       if(project && !this.milestoneService.currentId){
-        this.milestoneService.currentId = project.milestones[0]
+        this.milestoneService.currentId = project.milestonesIds[0]
       }
     })
   }
