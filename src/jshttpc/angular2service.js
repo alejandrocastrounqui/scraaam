@@ -42,9 +42,8 @@ const mapper = {
       process: function(localCTX){
         localCTX.modelPrototipe['addTo'+capitalize(localCTX.mappingName)] = function(data){
           data[relatedAs] = this
-          let relatedService = localCTX.provider.forModelName(modelName)
+          let relatedService = localCTX.service.getModelService(modelName)
           return relatedService.create(data).then((related)=>{
-            console.log(this)
             this[localCTX.mappingName+'Ids'].push(related.id)
             return related
           })
@@ -101,9 +100,8 @@ const mapper = {
 
 export class Angular2Service{
 
-  constructor(model, provider) {
+  constructor(model) {
     const schema = model(mapper)
-    provider.declare(schema.name, this)
     this._cache = {}
     const resourcePath = schema.resourcePath || schema.name.toLowerCase()
     const transforms = {
@@ -113,12 +111,13 @@ export class Angular2Service{
       afterCreate:  []
     }
     const modelPrototipe = {}
-    const defaultsCTX = {modelPrototipe, resourcePath, transforms, provider, service: this}
+    const defaultsCTX = {modelPrototipe, resourcePath, transforms, service: this}
     for(let mappingName in schema.mapping){
       let mapper = schema.mapping[mappingName]
       let localCTX = extend(defaultsCTX, {mappingName})
       mapper.process(localCTX)
     }
+    this.modelName = schema.name
     this.resourcePath = resourcePath
     this.transforms = transforms
     this.modelPrototipe = modelPrototipe
@@ -126,6 +125,10 @@ export class Angular2Service{
 
   get creation() {
     return this._creation
+  }
+
+  getModelService (modelName){
+    return this.provider.getModelService(modelName)
   }
 
   afterRetrive(local, response){

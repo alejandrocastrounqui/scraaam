@@ -1,6 +1,6 @@
 import { Component }        from '@angular/core';
-import { ProjectService }   from '../../../services/project';
-import { MilestoneService } from '../../../services/milestone';
+import { ProjectService }   from '../../../services/ProjectService';
+import { MilestoneService } from '../../../services/MilestoneService';
 import { Observer }         from '../../../extra/observer';
 
 @Component({

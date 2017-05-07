@@ -1,10 +1,10 @@
 <form #projectCreateForm="ngForm" novalidate>
   <fieldset [disabled]="processing">
     <div class="form-group">
-      <label for="name">Nombre del proyecto</label>
+      <label for="name">Project name</label>
       <input id="name"
         class="form-control"
-        placeholder="nombre"
+        placeholder="name"
         name="name"
         required
         #name="ngModel"
@@ -12,8 +12,8 @@
     </div>
     <div [hidden]="!submitted || name.valid"
          class="alert alert-danger">
-      Debe ingresar un valor
+      value is required
     </div>
-    <button *ngIf="!hideActions" type="button" (click)="createProject()">Crear</button>
+    <button *ngIf="!hideActions" type="button" (click)="createProject()">Create</button>
   </fieldset>
 <form>

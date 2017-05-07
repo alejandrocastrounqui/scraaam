@@ -1,3 +1,23 @@
-<h5>vista del projecto</h5>
-<p>{{project.name}}</p>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row project-view pl-sm-0">
+    <div class="col-lg-8">
+      <local-epic-detail></local-epic-detail>
+    </div>
+    <div class="col-lg-4 left-panel">
+      <div class="epic-task-list">
+        <div class="heading">
+          <h5 class="text-info">tasks
+          <span *ngIf="epic" class="small">(<span>{{epic.tasksIds.length}}</span>)</span>
+          </h5>
+        </div>
+        <p *ngIf="!epic || !epic.tasksIds.length">this epic has not any task yet</p>
+        <ul class="epic-task-list-items" *ngIf="epic && epic.tasksIds.length">
+          <li *ngFor="let epicTaskId of epic.tasksIds">
+            <local-epic-task-link [epicTaskId]="epicTaskId"></local-epic-task-link>
+          </li>
+        </ul>
+        <local-epic-task-create></local-epic-task-create>
+      </div>
+    </div>
+  </div>
+</div>

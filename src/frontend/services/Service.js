@@ -3,8 +3,8 @@ import { Angular2Service } from '../jshttpc/angular2service';
 
 export class Service extends Angular2Service{
 
-  constructor(model, http, serviceProvider) {
-    super(model, serviceProvider)
+  constructor(model, http) {
+    super(model)
     this.http = http
     this._cache = {}
     this._currentId = null;

@@ -1,12 +1,13 @@
-<form #milestoneCreateForm="ngForm" class="" novalidate>
+<form #milestoneCreateForm="ngForm" (keydown.enter)="createMilestone()" novalidate>
   <fieldset [disabled]="processing">
     <div class="form-group row">
       <div class="col-sm-10">
         <input id="name"
           class="form-control"
-          placeholder="crear milestone"
+          placeholder="new milestone"
           name="name"
           required
+          #nameControl
           #name="ngModel"
           [(ngModel)]="data.name"
         >
@@ -18,7 +19,7 @@
     <div class="form-group">
       <div [hidden]="!submitted || name.valid"
         class="alert alert-danger">
-        Debe ingresar un valor
+        value is required
       </div>
     </div>
   </fieldset>

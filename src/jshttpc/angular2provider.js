@@ -1,20 +1,18 @@
-import { Injectable }  from '@angular/core';
-
-@Injectable()
-export class ServiceProvider{
+export class Angular2Provider{
 
   constructor() {
     this.services = {}
   }
 
-  declare(modelName, service){
-    if(this.services[modelName]){
+  declare(service){
+    if(this.services[service.name]){
       throw Error(`Cannot declare multiple service for ${modelName}`)
     }
-    this.services[modelName] = service
+    service.provider = this    
+    this.services[service.modelName] = service
   }
 
-  forModelName(modelName){
+  getModelService(modelName){
     let service = this.services[modelName]
     if(!service){
       throw Error(`${modelName} service not found`)

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MilestoneService } from '../../../services/milestone';
+import { MilestoneService } from '../../../services/MilestoneService';
 
 @Component({
   selector: 'local-milestone-link',

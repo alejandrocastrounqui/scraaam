@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'local-comment-view',
-  inputs: [ 'data' ],
+  selector: 'local-epic-task-create',
   template: require('./template.html')
 })
-export class CommentView {
+export class EpicTaskCreate {
+
+  constructor() {
+
+  }
 
 }

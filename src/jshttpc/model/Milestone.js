@@ -4,7 +4,7 @@ const Milestone = function(mapper){
     mapping:{
       name:        mapper.string(),
       description: mapper.string(),
-      epics:       mapper.hasMany('Epic'),
+      epics:       mapper.hasMany('Epic', {as: 'milestone'}),
       project:     mapper.belongsTo('Project', 'milestones')
     }
   }

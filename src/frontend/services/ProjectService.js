@@ -1,14 +1,13 @@
 import { Injectable }      from '@angular/core';
 import { Http }            from '@angular/http';
-import { Service }         from './service';
-import { ServiceProvider } from './provider';
+import { Service }         from './Service';
 import Project             from '../jshttpc/model/Project';
 
 @Injectable()
 export class ProjectService extends Service{
 
-  constructor(http: Http, serviceProvider:ServiceProvider) {
-    super(Project, http, serviceProvider)
+  constructor(http: Http) {
+    super(Project, http)
   }
 
   getAll() {

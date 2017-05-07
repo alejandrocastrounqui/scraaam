@@ -2,8 +2,8 @@ const EpicTask = function(mapper){
   return {
     name: 'EpicTask',
     mapping:{
-      description:    mapper.string(),
-      epic:      mapper.belongsTo('Epic', 'tasks')
+      description:  mapper.string(),
+      epic:         mapper.belongsTo('Epic', 'tasks')
     }
   }
 }

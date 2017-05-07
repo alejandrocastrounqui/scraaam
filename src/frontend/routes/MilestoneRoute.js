@@ -1,13 +1,13 @@
 import { Component }        from '@angular/core';
 import { ActivatedRoute }   from '@angular/router';
-import { ProjectService }   from '../../services/project';
-import { MilestoneService } from '../../services/milestone';
-import { Observer }         from '../../extra/observer';
+import { ProjectService }   from '../services/ProjectService';
+import { MilestoneService } from '../services/MilestoneService';
+import { Observer }         from '../extra/observer';
 
 @Component({
   template: `<local-project-view></local-project-view>`
 })
-export class ProjectRoute extends Observer{
+export class MilestoneRoute extends Observer{
 
   constructor(route: ActivatedRoute, projectService:ProjectService, milestoneService:MilestoneService) {
     super()
@@ -18,15 +18,17 @@ export class ProjectRoute extends Observer{
 
   ngOnInit() {
     super.ngOnInit()
-    let localProject
-    this.subscribe(this.projectService.current, project => {
-      if(project && project != localProject){
-        this.milestoneService.currentId = project.milestonesIds[0]
+
+    this.subscribe(this.milestoneService.current, milestone => {
+      this.milestone = milestone
+      if(milestone){
+        this.projectService.currentId = milestone.projectId
       }
     })
     this.subscribe(this.route.params, params => {
-      this.projectService.currentId = params.projectId
+      this.milestoneService.currentId = params.milestoneId
     });
+
   }
 
 }

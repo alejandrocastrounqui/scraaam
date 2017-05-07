@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router'
-import { ProjectService }  from '../../../../services/project';
+import { ProjectService }  from '../../../../services/ProjectService';
 
 @Component({
   selector: 'local-project-create-form',

@@ -1,8 +1,8 @@
 import { Component }        from '@angular/core';
 import { Input }            from '@angular/core';
 import { ViewChild }        from '@angular/core';
-import { MilestoneService } from '../../../../services/milestone';
-import { ProjectService }   from '../../../../services/project';
+import { MilestoneService } from '../../../../services/MilestoneService';
+import { ProjectService }   from '../../../../services/ProjectService';
 import { Observer }         from '../../../../extra/observer';
 
 @Component({
@@ -12,6 +12,7 @@ import { Observer }         from '../../../../extra/observer';
 export class MilestoneCreateForm extends Observer{
   @Input() hideActions
   @ViewChild('milestoneCreateForm') milestoneCreateForm;
+  @ViewChild('nameControl') nameControl
   constructor(milestoneService:MilestoneService, projectService:ProjectService) {
     super()
     this.milestoneService = milestoneService
@@ -38,6 +39,9 @@ export class MilestoneCreateForm extends Observer{
         this.processing = false
         this.submitted = false
         this.data.name = ''
+        setTimeout(()=>{
+          this.nameControl.nativeElement.focus()
+        },1)
       })
   }
 }

@@ -1,32 +1,36 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute }   from '@angular/router';
-import { EpicService } from '../../../services/epic';
+import { Component}           from '@angular/core';
+import { ActivatedRoute }     from '@angular/router';
+import { EpicService }        from '../../../services/EpicService';
+import { EpicCommentService } from '../../../services/EpicCommentService';
+import { Observer }           from '../../../extra/observer';
 
 @Component({
   selector: 'local-epic-view',
   template: require('./template.html')
 })
-export class EpicView {
-  @Input() project
-  constructor(route: ActivatedRoute, epicService:EpicService) {
+export class EpicView extends Observer{
+
+  constructor(
+    route: ActivatedRoute,
+    epicService:EpicService,
+    epicCommentService:EpicCommentService
+  ) {
+    super()
     this.route = route
-    this.project = {}
     this.epicService = epicService
+    this.epicCommentService = epicCommentService
   }
   ngOnInit() {
-    var controller = this
-    this.handler = this.route.params.subscribe(params => {
-      if(params.epicId){
-        this.epicService.getById(params.epicId)
-        .then(rawEpic =>{
-          controller.epic = rawEpic
-        })
+    super.ngOnInit()
+    this.subscribe(this.epicService.current, epic => {
+      this.epic = epic
+      if(epic && !this.epicCommentService.currentId){
+        this.epicCommentService.currentId = epic.commentsIds[0]
       }
-    });
+    })
   }
 
   ngOnDestroy() {
-    this.handler.unsubscribe();
   }
 
 }

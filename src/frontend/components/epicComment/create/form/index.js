@@ -9,7 +9,6 @@ import { Observer }        from '../../../../extra/observer';
 export class EpicCreateForm extends Observer{
   @Input() hideActions
   @ViewChild('epicCreateForm') epicCreateForm;
-  @ViewChild('nameControl') nameControl
   constructor(milestoneService:MilestoneService) {
     super()
     this.milestoneService = milestoneService
@@ -35,9 +34,6 @@ export class EpicCreateForm extends Observer{
         this.processing = false
         this.submitted = false
         this.data.name = ''
-        setTimeout(()=>{
-          this.nameControl.nativeElement.focus()
-        },1)
       })
   }
 }

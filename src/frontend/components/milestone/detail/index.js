@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MilestoneService } from '../../../services/milestone';
+import { MilestoneService } from '../../../services/MilestoneService';
 import { Observer }         from '../../../extra/observer';
 
 @Component({

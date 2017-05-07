@@ -20,7 +20,7 @@
             <a class="nav-link no-href" [routerLink]="['/project', projectItem.id]">{{ projectItem.name }}</a>
           </li>
         </ng-container>
-        <li class="dropdown-item nav-item"><a class="nav-link no-href" (click)="createProject()">crear proyecto</a></li>
+        <li class="dropdown-item nav-item"><a class="nav-link no-href" (click)="createProject()">create project</a></li>
       </ul>
     </li>
   </ul>
@@ -30,17 +30,25 @@
         <span>Alejandro Castro</span> <b class="caret"></b>
       </a>
       <ul class="dropdown-menu bg-inverse" role="menu">
-        <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Cuenta</a></li>
-        <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Cerrar sesión</a></li>
+        <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Account</a></li>
+        <li class="dropdown-item bg-inverse nav-item"><a class="nav-link" href="#">Logout</a></li>
       </ul>
     </li>
   </ul>
 </nav>
 <div class="container-fluid">
   <div class="row route-info">
-    <div class="col-sm-12" *ngIf="project">
-      <a class="no-href" [routerLink]="['/project', project.id]">{{project.name}}</a>
-      <span>milestones</span>
+    <div class="col-sm-12">
+      <span *ngIf="project">
+        <a class="no-href" [routerLink]="['/project', project.id]">{{project.name}}</a>
+        <span class="text-mutted"> >> </span>
+        <span *ngIf="!milestone">milestones</span>
+      </span>
+      <span *ngIf="milestone">
+        <a class="no-href" [routerLink]="['/milestone', milestone.id]">{{milestone.name}}</a>
+        <span class="text-mutted"> >> </span>
+        <span *ngIf="!epic">epics</span>
+      </span>
     </div>
   </div>
   <div class="row"><div class="separate-y"></div></div>

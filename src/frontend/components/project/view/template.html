@@ -3,15 +3,15 @@
     <div class="col-lg-8">
       <local-milestone-detail></local-milestone-detail>
     </div>
-    <div class="col-lg-4 left-panel milestone-list">
-      <div class="milestones-list">
+    <div class="col-lg-4 left-panel">
+      <div class="milestone-list">
         <div class="heading">
-          <h5>milestones
-          <span *ngIf="project" class="small text-info">(<span>{{project.milestonesIds.length}}</span>)</span>
+          <h5 class="text-info">milestones
+          <span *ngIf="project" class="small">(<span>{{project.milestonesIds.length}}</span>)</span>
           </h5>
         </div>
-        <span *ngIf="!project || !project.milestonesIds.length">este proyecto no posee milestones aún</span>
-        <ul class="milestones-list-items" *ngIf="project && project.milestonesIds.length">
+        <p *ngIf="!project || !project.milestonesIds.length">this project has not any milestone yet</p>
+        <ul class="milestone-list-items" *ngIf="project && project.milestonesIds.length">
           <li *ngFor="let milestoneId of project.milestonesIds">
             <local-milestone-link [milestoneId]="milestoneId"></local-milestone-link>
           </li>

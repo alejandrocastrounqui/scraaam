@@ -1,4 +1,4 @@
-<form #epicCreateForm="ngForm" (keydown.enter)="createEpic()" novalidate>
+<form #epicCreateForm="ngForm" class="" novalidate>
   <fieldset [disabled]="processing">
     <div class="form-group row">
       <div class="col-sm-10">
@@ -7,7 +7,6 @@
           placeholder="new epic"
           name="name"
           required
-          #nameControl
           #name="ngModel"
           [(ngModel)]="data.name"
         >

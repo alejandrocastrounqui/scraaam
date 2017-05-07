@@ -4,8 +4,8 @@ const Epic = function(mapper){
     mapping:{
       name:        mapper.string(),
       description: mapper.string(),
-      tasks:       mapper.hasMany('EpicTask'),
-      comments:    mapper.hasMany('EpicComment'),
+      tasks:       mapper.hasMany('EpicTask', {as: 'epic'}),
+      comments:    mapper.hasMany('EpicComment', {as: 'epic'}),
       milestone:   mapper.belongsTo('Milestone', 'epics')
     }
   }
