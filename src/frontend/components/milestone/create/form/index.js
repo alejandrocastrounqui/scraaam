@@ -31,14 +31,12 @@ export class MilestoneCreateForm extends Observer{
       return this.hideActions && Promise.reject()
     }
     this.processing = true
-    let milestone = {
-      name: this.data.name
-    }
-    return this.project.addToMilestones(milestone)
+    return this.project.addToMilestones(this.data)
       .then(() => {
         this.processing = false
         this.submitted = false
         this.data.name = ''
+        this.data.description = ''
         setTimeout(()=>{
           this.nameControl.nativeElement.focus()
         },1)

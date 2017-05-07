@@ -1,7 +1,7 @@
 import { Injectable }      from '@angular/core';
 import { Http }            from '@angular/http';
 import { Service }         from './Service';
-import EpicComment            from '../jshttpc/model/EpicComment';
+import EpicComment         from '../jshttpc/model/EpicComment';
 
 @Injectable()
 export class EpicCommentService  extends Service{

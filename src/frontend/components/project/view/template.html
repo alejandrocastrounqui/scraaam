@@ -1,17 +1,17 @@
 <div class="container-fluid">
-  <div class="row project-view pl-sm-0">
-    <div class="col-lg-8">
+  <div class="row pl-sm-0">
+    <div class="col-lg-8 principal-panel">
       <local-milestone-detail></local-milestone-detail>
     </div>
-    <div class="col-lg-4 left-panel">
-      <div class="milestone-list">
+    <div class="col-lg-4 secondary-panel">
+      <div class="list-panel">
         <div class="heading">
           <h5 class="text-info">milestones
           <span *ngIf="project" class="small">(<span>{{project.milestonesIds.length}}</span>)</span>
           </h5>
         </div>
         <p *ngIf="!project || !project.milestonesIds.length">this project has not any milestone yet</p>
-        <ul class="milestone-list-items" *ngIf="project && project.milestonesIds.length">
+        <ul *ngIf="project && project.milestonesIds.length">
           <li *ngFor="let milestoneId of project.milestonesIds">
             <local-milestone-link [milestoneId]="milestoneId"></local-milestone-link>
           </li>

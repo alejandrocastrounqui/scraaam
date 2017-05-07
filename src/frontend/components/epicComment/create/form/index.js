@@ -1,39 +1,46 @@
-import { Component, Input, ViewChild} from '@angular/core';
-import { MilestoneService }  from '../../../../services/MilestoneService';
-import { Observer }        from '../../../../extra/observer';
+import { Component }    from '@angular/core';
+import { Input }        from '@angular/core';
+import { ViewChild}     from '@angular/core';
+import { EventEmitter } from "@angular/common/src/facade/async";
+import { EpicService }  from '../../../../services/EpicService';
+import { Observer }     from '../../../../extra/observer';
 
 @Component({
-  selector: 'local-epic-create-form',
+  selector: 'local-epic-comment-create-form',
   template: require('./template.html')
 })
-export class EpicCreateForm extends Observer{
+export class EpicCommentCreateForm extends Observer{
   @Input() hideActions
-  @ViewChild('epicCreateForm') epicCreateForm;
-  constructor(milestoneService:MilestoneService) {
+  @ViewChild('epicCommentCreateForm') epicCommentCreateForm;
+  @ViewChild('bodyControl') bodyControl
+  constructor(epicService:EpicService) {
     super()
-    this.milestoneService = milestoneService
+    this.epicService = epicService
     this.data = {}
   }
   ngOnInit() {
     super.ngOnInit()
-    this.subscribe(this.milestoneService.current, current => {
-      this.milestone = current
+    this.subscribe(this.epicService.current, current => {
+      this.epic = current
     })
   }
-  createEpic() {
+  createEpicComment() {
     this.submitted = true
-    if(this.epicCreateForm.invalid){
+    if(this.epicCommentCreateForm.invalid){
       return this.hideActions && Promise.reject()
     }
     this.processing = true
-    let epic = {
-      name: this.data.name
+    let comment = {
+      body: this.data.body
     }
-    return this.milestone.addToEpics(epic)
+    return this.epic.addToComments(comment)
       .then(() => {
         this.processing = false
         this.submitted = false
-        this.data.name = ''
+        this.data.body = ''
+        setTimeout(()=>{
+          this.bodyControl.nativeElement.focus()
+        },1)
       })
   }
 }

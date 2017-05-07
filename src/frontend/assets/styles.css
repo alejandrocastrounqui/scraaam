@@ -47,19 +47,19 @@ body:before {
   cursor: pointer;
 }
 .route-info{
-  background-color: #FFF;
+  background-color: #44464f;
 }
 .route-info a{
   font-weight: bold;
   text-decoration: none;
-  color: #555;
+  color: #BBB;
 }
 .route-info a:hover{
   text-decoration: none;
-  color: #000;
+  color: #FFF;
 }
 
-.left-panel{
+.secondary-panel{
   background-color: #24262d;
   color: #EEE;
   padding-bottom: 9999px;
@@ -76,8 +76,39 @@ body:before {
 
 .cave-theme .alert,
 .cave-theme button.btn,
-.cave-theme input.form-control{
+.cave-theme input.form-control,
+.cave-theme textarea.form-control{
   border-radius: 0;
+}
+
+.cave-theme input.form-control,
+.cave-theme textarea.form-control{
+  background-color: dimgrey;
+  color: #FFF;
+}
+.cave-theme .modal-content{
+  background-color: #777;
+  color: #eee;
+}
+.cave-theme .modal-header{
+  border-bottom: 1px solid #999;
+}
+.cave-theme .modal-footer{
+  border-top: 1px solid #999;
+}
+
+.cave-theme .alert,
+.cave-theme .form-group{
+  margin-bottom: 0.5rem;
+}
+
+.epic-task-link{
+  margin-bottom: 0.5rem;
+}
+
+.cave-theme .epic-task-link{
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #999;
 }
 
 .cave-theme .text-primary{
@@ -107,94 +138,51 @@ body:before {
   color: #fff;
 }
 
-/*project/view/style.css*/
-.cave-theme .project-view{
+body.cave-theme{
   color: #949ba2;
 }
-.epic-task-list .heading,
-.milestone-list .heading{
-  padding-top: 10px;
-}
-.epic-task-list .heading,
-.milestones-detail .heading{
-  padding-top: 10px;
-}
-.epic-task-list .heading,
-.milestones-detail .heading p{
+
+.list-panel .heading p{
   margin-bottom: 5px;
 }
 
-/*epic/list/style.css*/
+.list-panel .heading{
+  padding-top: 10px;
+}
 
-.epic-list ul.epic-list-items{
+.list-panel .heading p{
+  margin-bottom: 5px;
+}
+
+.list-panel ul{
   padding-left: 0px;
 }
-.epic-list .epic-list-items li{
+.list-panel li{
   display: block;
 }
-.epic-list .epic-list-items a,
-.epic-list .epic-list-items a:hover{
+.list-panel a,
+.list-panel a:hover{
   cursor: pointer;
   text-decoration: none;
   display: block;
 }
 
-.cave-theme .epic-list .epic-list-items a,
-.cave-theme .epic-list .epic-list-items a:hover{
+.cave-theme .list-panel ul li a{
   color: #949ba2;
 }
 
-.cave-theme .epic-list .epic-list-items a:hover{
+.cave-theme .list-panel ul li a:hover{
   color: #fff;
 }
 
-/*epic-task/list/style.css*/
-
-.epic-task-list ul.epic-task-list-items{
-  padding-left: 0px;
+.cave-theme .principal-panel .list-panel ul li a:hover{
+  background-color: #24262d;
 }
-.epic-task-list .epic-task-list-items li{
-  display: block;
-}
-.epic-task-list .epic-task-list-items a,
-.epic-task-list .epic-task-list-items a:hover{
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
+.cave-theme .secondary-panel .list-panel ul li a:hover{
+  background-color: #44464f;
 }
 
-.cave-theme .epic-task-list .epic-task-list-items a,
-.cave-theme .epic-task-list .epic-task-list-items a:hover{
-  color: #949ba2;
-}
 
-.cave-theme .epic-task-list .epic-task-list-items a:hover{
-  color: #fff;
-}
-
-/*milestone/list/style.css*/
-
-.milestone-list ul.milestone-list-items{
-  padding-left: 0px;
-}
-.milestone-list .milestone-list-items li{
-  display: block;
-}
-.milestone-list .milestone-list-items a,
-.milestone-list .milestone-list-items a:hover{
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
-}
-
-.cave-theme .milestone-list .milestone-list-items a,
-.cave-theme .milestone-list .milestone-list-items a:hover{
-  color: #949ba2;
-}
-
-.cave-theme .milestone-list .milestone-list-items a:hover{
-  color: #fff;
-}
 
 /*dashboard*/
 .dashboard{

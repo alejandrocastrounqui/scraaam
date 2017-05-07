@@ -1,8 +1,9 @@
-<div class="milestones-detail container-fluid">
-  <div class="row">
+<div class="container-fluid">
+  <div class="row list-panel">
     <div class="col-md-12 pl-sm-0" *ngIf="milestone">
       <div class="heading">
         <h5 class="text-primary">{{milestone.name}}</h5>
+        <p class="text-primary">{{milestone.description}}</p>
         <p *ngIf="milestone.epicsIds.length">
           <span class="text-info">epics</span>
           <span class="small text-info">
@@ -11,13 +12,11 @@
         </p>
         <p *ngIf="!milestone.epicsIds.length">this milestone has not any epic yet</p>
       </div>
-      <div class="epic-list">
-        <ul class="epic-list-items" *ngIf="milestone && milestone.epicsIds.length">
-          <li *ngFor="let epicId of milestone.epicsIds">
-            <local-epic-link [epicId]="epicId"></local-epic-link>
-          </li>
-        </ul>
-      </div>
+      <ul *ngIf="milestone && milestone.epicsIds.length">
+        <li *ngFor="let epicId of milestone.epicsIds">
+          <local-epic-link [epicId]="epicId"></local-epic-link>
+        </li>
+      </ul>
       <div class="col-md-6 pl-sm-0">
         <local-epic-create></local-epic-create>
       </div>

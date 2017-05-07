@@ -15,7 +15,7 @@ import { FocusDirective }      from './directives/focus'
 
 import { MainView }            from './components/main/index'
 
-import { Dashboard }           from './components/dashboard/index'
+import { Dashboard }           from './routes/dashboard/index'
 
 import { HeaderView }          from './components/header/index'
 
@@ -40,12 +40,17 @@ import { MilestoneCreateForm } from './components/milestone/create/form/index'
 
 import { EpicLink }            from './components/epic/link/index'
 import { EpicView }            from './components/epic/view/index'
+import { EpicDetail }          from './components/epic/detail/index'
 import { EpicCreate }          from './components/epic/create/index'
 import { EpicCreateForm }      from './components/epic/create/form/index'
 
 import { EpicTaskLink }        from './components/epicTask/link/index'
 import { EpicTaskCreate }      from './components/epicTask/create/index'
 import { EpicTaskCreateForm }  from './components/epicTask/create/form/index'
+
+import { EpicCommentLink }        from './components/epicComment/link/index'
+import { EpicCommentCreate }      from './components/epicComment/create/index'
+import { EpicCommentCreateForm }  from './components/epicComment/create/form/index'
 
 let routes = [{
     path: '',
@@ -98,11 +103,15 @@ let router = RouterModule.forRoot(routes, routerOptions)
     MilestoneCreateForm,
     EpicView,
     EpicLink,
+    EpicDetail,
     EpicCreate,
     EpicCreateForm,
     EpicTaskLink,
     EpicTaskCreate,
     EpicTaskCreateForm,
+    EpicCommentLink,
+    EpicCommentCreate,
+    EpicCommentCreateForm,
     FocusDirective
   ],
   providers: [

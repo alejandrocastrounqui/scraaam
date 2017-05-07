@@ -27,14 +27,12 @@ export class EpicCreateForm extends Observer{
       return this.hideActions && Promise.reject()
     }
     this.processing = true
-    let epic = {
-      name: this.data.name
-    }
-    return this.milestone.addToEpics(epic)
+    return this.milestone.addToEpics(this.data)
       .then(() => {
         this.processing = false
         this.submitted = false
         this.data.name = ''
+        this.data.description = ''
         setTimeout(()=>{
           this.nameControl.nativeElement.focus()
         },1)

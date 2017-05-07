@@ -13,13 +13,31 @@
         >
       </div>
       <div class="col-sm-2 pl-sm-0">
-        <button *ngIf="!hideActions" type="button" class="btn btn-block btn-primary" (click)="createMilestone()">+</button>
+        <button *ngIf="!hideActions" type="button" class="btn btn-block btn-primary" (click)="createMilestone()">
+          <i class="fa fa-plus"></i>
+        </button>
       </div>
     </div>
     <div class="form-group">
       <div [hidden]="!submitted || name.valid"
         class="alert alert-danger">
-        value is required
+        name is required
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea id="description"
+        class="form-control"
+        placeholder="description"
+        name="description"
+        required
+        #description="ngModel"
+        [(ngModel)]="data.description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <div [hidden]="!submitted || description.valid"
+        class="alert alert-danger">
+        description is required
       </div>
     </div>
   </fieldset>

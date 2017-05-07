@@ -49,6 +49,11 @@
         <span class="text-mutted"> >> </span>
         <span *ngIf="!epic">epics</span>
       </span>
+      <span *ngIf="epic">
+        <a class="no-href" [routerLink]="['/epic', epic.id]">{{epic.name}}</a>
+        <span class="text-mutted"> >> </span>
+        <span>comments</span>
+      </span>
     </div>
   </div>
   <div class="row"><div class="separate-y"></div></div>

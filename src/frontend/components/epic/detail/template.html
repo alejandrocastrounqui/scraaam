@@ -1,8 +1,9 @@
-<div class="epic-detail container-fluid">
-  <div class="row">
-    <div class="col-md-12 pl-sm-0" *ngIf="milestone">
+<div class="container-fluid">
+  <div class="row list-panel">
+    <div class="col-md-12 pl-sm-0" *ngIf="epic">
       <div class="heading">
         <h5 class="text-primary">{{epic.name}}</h5>
+        <p class="text-primary">{{epic.description}}</p>
         <p *ngIf="epic.commentsIds.length">
           <span class="text-info">comments</span>
           <span class="small text-info">
@@ -11,13 +12,11 @@
         </p>
         <p *ngIf="!epic.commentsIds.length">this epic has not any comment yet</p>
       </div>
-      <div class="epic-comment-list">
-        <ul class="epic-comment-list-items" *ngIf="epic && epic.commentsIds.length">
-          <li *ngFor="let epicCommentId of epic.commentsIds">
-            <local-epic-comment-link [epicCommentId]="epicCommentId"></local-comment-epic-link>
-          </li>
-        </ul>
-      </div>
+      <ul *ngIf="epic && epic.commentsIds.length">
+        <li *ngFor="let epicCommentId of epic.commentsIds">
+          <local-epic-comment-link [epicCommentId]="epicCommentId"></local-epic-comment-link>
+        </li>
+      </ul>
       <div class="col-md-6 pl-sm-0">
         <local-epic-comment-create></local-epic-comment-create>
       </div>

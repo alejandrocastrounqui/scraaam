@@ -1,20 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { EpicService } from '../../../services/EpicService';
+import { Component, Input }    from '@angular/core';
+import { EpicCommentService }  from '../../../services/EpicCommentService';
 
 @Component({
-  selector: 'local-epic-link',
+  selector: 'local-epic-comment-link',
   template: require('./template.html')
 })
-export class EpicLink {
-  @Input() epicId
-  constructor(epicService:EpicService) {
-    this.epicService = epicService
+export class EpicCommentLink {
+  @Input() epicCommentId
+  constructor(epicCommentService:EpicCommentService) {
+    this.epicCommentService = epicCommentService
   }
 
   ngOnInit() {
-    this.epicService.getById(this.epicId)
-    .then(epic => {
-      this.epic = epic
+    this.epicCommentService.getById(this.epicCommentId)
+    .then(epicComment => {
+      this.epicComment = epicComment
     })
   }
 

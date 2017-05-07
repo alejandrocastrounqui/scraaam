@@ -30,7 +30,6 @@ export class EpicView extends Observer{
     })
   }
 
-  ngOnDestroy() {
-  }
+
 
 }
