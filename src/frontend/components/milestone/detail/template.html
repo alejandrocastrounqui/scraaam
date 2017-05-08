@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row list-panel">
-    <div class="col-md-12 pl-sm-0" *ngIf="milestone">
+    <div class="col-md-12 pl-0 pr-0" *ngIf="milestone">
       <div class="heading">
         <h5 class="text-primary">{{milestone.name}}</h5>
         <p class="text-primary">{{milestone.description}}</p>
@@ -17,7 +17,7 @@
           <local-epic-link [epicId]="epicId"></local-epic-link>
         </li>
       </ul>
-      <div class="col-md-6 pl-sm-0">
+      <div class="col-md-6 pl-0 pr-0">
         <local-epic-create></local-epic-create>
       </div>
     </div>

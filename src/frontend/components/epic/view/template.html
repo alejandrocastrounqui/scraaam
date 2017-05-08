@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row pl-sm-0">
+  <div class="row pl-0">
     <div class="col-lg-8 principal-panel">
       <local-epic-detail></local-epic-detail>
     </div>
@@ -16,7 +16,9 @@
             <local-epic-task-link [epicTaskId]="epicTaskId"></local-epic-task-link>
           </li>
         </ul>
-        <local-epic-task-create></local-epic-task-create>
+        <div class="col-12 col-md-6 col-lg-12 pl-0 pr-0">
+          <local-epic-task-create></local-epic-task-create>
+        </div>
       </div>
     </div>
   </div>

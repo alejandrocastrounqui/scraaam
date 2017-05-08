@@ -1,4 +1,5 @@
 import { Component, ViewChild }  from '@angular/core';
+import { Router } from '@angular/router'
 import { NgbActiveModal }        from '@ng-bootstrap/ng-bootstrap'
 import { ProjectCreateForm }     from '../form/index'
 
@@ -8,14 +9,16 @@ import { ProjectCreateForm }     from '../form/index'
 })
 export class ProjectCreateModal {
   @ViewChild(ProjectCreateForm) projectCreateForm: ProjectCreateForm;
-  constructor(activeModal: NgbActiveModal) {
+  constructor(activeModal: NgbActiveModal, router:Router) {
     this.activeModal = activeModal
+    this.router = router
   }
-  createProject(){
+  createProject(isKeyAction){
     let modal = this.activeModal
-    this.projectCreateForm.createProject()
-    .then(()=>{
+    this.projectCreateForm.createProject(isKeyAction, true)
+    .then((project)=>{
       modal.close()
+      this.router.navigateByUrl('/project/' + project.id)
     })
     .catch(()=>{/*do nothing*/})
   }

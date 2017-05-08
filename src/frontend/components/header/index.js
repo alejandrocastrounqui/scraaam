@@ -29,6 +29,10 @@ export class HeaderView extends Observer{
   }
   ngOnInit() {
     super.ngOnInit()
+    this.subscribe(this.projectService.creation, newer => {
+      if(!newer){return}
+      this.projects.push(newer)
+    })
     this.subscribe(this.projectService.current, current => {
       this.project = current
     })
@@ -40,7 +44,7 @@ export class HeaderView extends Observer{
     })
     this.projectService.getAll()
     .then(projects => {
-      this.projects = projects
+      this.projects.splice(0, this.projects.length, ...projects)
     })
   }
 }

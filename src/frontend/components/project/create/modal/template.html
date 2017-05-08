@@ -4,7 +4,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" (keydown.enter)="createProject(true)">
   <local-project-create-form [hideActions]="true"></local-project-create-form>
 </div>
 <div class="modal-footer">

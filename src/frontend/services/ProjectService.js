@@ -7,7 +7,7 @@ import Project             from '../jshttpc/model/Project';
 export class ProjectService extends Service{
 
   constructor(http: Http) {
-    super(Project, http)
+    super(Project, http)    
   }
 
   getAll() {

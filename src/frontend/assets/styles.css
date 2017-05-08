@@ -54,6 +54,10 @@ body:before {
   text-decoration: none;
   color: #BBB;
 }
+.route-info a:focus{
+  text-decoration: none;
+  color: #BBB;
+}
 .route-info a:hover{
   text-decoration: none;
   color: #FFF;
@@ -81,14 +85,32 @@ body:before {
   border-radius: 0;
 }
 
-.cave-theme input.form-control,
-.cave-theme textarea.form-control{
-  background-color: dimgrey;
+.cave-theme .form-control {
+  border-color: #555;
+}
+.cave-theme .form-control:focus {
+  border-color: #5cb3fd;
+}
+
+.cave-theme .principal-panel input.form-control,
+.cave-theme .principal-panel textarea.form-control{
+  background-color: #38384c;
   color: #FFF;
 }
+
+.cave-theme .secondary-panel input.form-control,
+.cave-theme .secondary-panel textarea.form-control{
+  background-color: #303038;
+  color: #FFF;
+}
+
 .cave-theme .modal-content{
   background-color: #777;
   color: #eee;
+}
+.cave-theme .modal-content input.form-control{
+  background-color: #999;
+  color: #FFF;
 }
 .cave-theme .modal-header{
   border-bottom: 1px solid #999;
@@ -135,7 +157,7 @@ body:before {
 }
 
 .cave-theme .navbar-brand{
-  color: #fff;
+  color: #f6a821;
 }
 
 body.cave-theme{

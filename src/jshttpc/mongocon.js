@@ -74,7 +74,7 @@ const routerIdParam = function(defaultsCTX){
     model.findById(id)
       .then(instance => {
         if (! instance ) {
-          throw new Error(`${ctx.localModelName} instance with id:${id} not found`)
+          throw new Error(`${defaultsCTX.schema.name} instance with id:${id} not found`)
         }
         req.instance = instance
         next()

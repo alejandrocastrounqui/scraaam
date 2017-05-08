@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row list-panel">
-    <div class="col-md-12 pl-sm-0" *ngIf="epic">
+    <div class="col-md-12 pl-0 pr-0" *ngIf="epic">
       <div class="heading">
         <h5 class="text-primary">{{epic.name}}</h5>
         <p class="text-primary">{{epic.description}}</p>
@@ -17,7 +17,7 @@
           <local-epic-comment-link [epicCommentId]="epicCommentId"></local-epic-comment-link>
         </li>
       </ul>
-      <div class="col-md-6 pl-sm-0">
+      <div class="col-md-6 pl-0 pr-0">
         <local-epic-comment-create></local-epic-comment-create>
       </div>
     </div>

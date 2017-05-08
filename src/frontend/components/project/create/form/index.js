@@ -1,6 +1,8 @@
-import { Component, Input, ViewChild} from '@angular/core';
-import { Router } from '@angular/router'
-import { ProjectService }  from '../../../../services/ProjectService';
+import { Component }         from '@angular/core';
+import { Input }             from '@angular/core';
+import { ViewChild }         from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { ProjectService }    from '../../../../services/ProjectService';
 
 @Component({
   selector: 'local-project-create-form',
@@ -9,23 +11,33 @@ import { ProjectService }  from '../../../../services/ProjectService';
 export class ProjectCreateForm {
   @Input() hideActions
   @ViewChild('projectCreateForm') projectCreateForm;
-  constructor(projectService:ProjectService, router:Router) {
+  constructor(projectService:ProjectService, cdRef:ChangeDetectorRef) {
     this.projectService = projectService
-    this.router = router
+    this.cdRef = cdRef
     this.data = {}
   }
-  createProject() {
+  createProject(isKeyAction, fronParent) {
+    if(this.hideActions && isKeyAction && !fronParent){return}
     this.submitted = true
     if(this.projectCreateForm.invalid){
       return this.hideActions && Promise.reject()
     }
     this.processing = true
-    let project = {
+    let data = {
       name: this.data.name
     }
-    return this.projectService.create(project)
-      .then(() =>{
-        this.router.navigateByUrl('/project/' + project.id)
+    isKeyAction && this.cdRef.detectChanges();
+    return this.projectService.create(data)
+      .then((project) =>{
+        this.submitted = false
+        this.processing = false
+        this.data.name = ''
+        return project
+      })
+      .catch((error) =>{
+        this.submitted = false
+        this.processing = false
+        throw error
       })
   }
 }

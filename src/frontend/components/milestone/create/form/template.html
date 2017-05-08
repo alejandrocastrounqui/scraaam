@@ -1,7 +1,7 @@
 <form #milestoneCreateForm="ngForm" (keydown.enter)="createMilestone()" novalidate>
   <fieldset [disabled]="processing">
     <div class="form-group row">
-      <div class="col-sm-10">
+      <div class="col-sm-10 pr-2">
         <input id="name"
           class="form-control"
           placeholder="new milestone"
@@ -12,7 +12,7 @@
           [(ngModel)]="data.name"
         >
       </div>
-      <div class="col-sm-2 pl-sm-0">
+      <div class="col-2 col-sm-2 pl-sm-0">
         <button *ngIf="!hideActions" type="button" class="btn btn-block btn-primary" (click)="createMilestone()">
           <i class="fa fa-plus"></i>
         </button>
