@@ -11,7 +11,9 @@
     "test": "mocha test/backend --recursive --compilers js:babel-core/register --require babel-polyfill --timeout 120000",
     "karma": "karma start",
     "backend": "babel-node -- src/backend/server.js",
-    "frontend": "webpack --progress --watch"
+    "frontend": "webpack --progress --watch",
+    "webdriver": "webdriver-manager update",
+    "protractor": "protractor"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
