@@ -9,8 +9,6 @@ import EpicComment  from './jshttpc/model/EpicComment'
 
 let router = express.Router()
 
-const mappings = {router}
-
 const mongoCon = new MongoCon()
 
 mongoCon.load(Project)
@@ -20,5 +18,7 @@ mongoCon.load(EpicTask)
 mongoCon.load(EpicComment)
 
 mongoCon.makeRoutes(router)
+
+const mappings = {router, mongoCon}
 
 export default mappings
