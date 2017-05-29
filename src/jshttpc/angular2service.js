@@ -123,10 +123,6 @@ export class Angular2Service{
     this.modelPrototipe = modelPrototipe
   }
 
-  get creation() {
-    return this._creation
-  }
-
   getModelService (modelName){
     return this.provider.getModelService(modelName)
   }
