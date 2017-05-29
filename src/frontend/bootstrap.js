@@ -12,6 +12,7 @@ import { HttpModule }    from '@angular/http'
 import 'rxjs/add/operator/toPromise'
 
 import { FocusDirective }      from './directives/focus'
+import { NoHrefDirective }     from './directives/no-href'
 
 import { MainView }            from './components/main/index'
 
@@ -112,7 +113,8 @@ let router = RouterModule.forRoot(routes, routerOptions)
     EpicCommentLink,
     EpicCommentCreate,
     EpicCommentCreateForm,
-    FocusDirective
+    FocusDirective,
+    NoHrefDirective
   ],
   providers: [
     ProjectService,
