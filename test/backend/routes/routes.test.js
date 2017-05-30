@@ -211,15 +211,14 @@ describe("routes", () => {
 
   })
 
-  describe("Post /noticias", () => {
+  describe("Post /project", () => {
 
-    it("Should return a the id of the newly created post", async() => {
-      // const response = await request(app)
-      //       .post("/noticias")
-      //       .send({ title: "Post #3", content: "Post #3 content" })
-      //       .expect(200)
-      //
-      // response.body.should.be.a("string")
+    it("Should return the id of the newly created project", async() => {
+      const response = await request(app)
+          .post("/project")
+          .send({name: "next project"})
+          .expect(200)
+      response.body.should.be.a("string")
     })
 
     it("Should save the post in the database", async() => {
