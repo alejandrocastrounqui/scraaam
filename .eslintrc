@@ -1,0 +1,43 @@
+{
+  "env": {
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "space-after-keywords": "off",
+    "keyword-spacing": [
+      "error", {
+      "before": true,
+      "after": true,
+      "overrides": {
+        "if": { "after": false },
+        "else": { "after": false },
+        "for": { "after": false },
+        "while": { "after": false }
+      }
+    }],
+    "new-cap": ['warn', {
+      "capIsNew": false
+    }],
+    "array-bracket-spacing": ["error", "never"],
+    "block-scoped-var": "error",
+    "brace-style": ["error", "stroustrup"],
+    "camelcase": "warn",
+    "computed-property-spacing": ["error", "never"],
+    "curly": "error",
+    "eol-last": "error",
+    "eqeqeq": ["error", "smart"],
+    "max-depth": ["warn", 3],
+    "max-len": ["warn", 80],
+    "max-statements": ["warn", 30],
+    "no-extend-native": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-trailing-spaces": "error",
+    "no-unused-vars": "warn",
+    "no-use-before-define": ["error", "nofunc"],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single", "avoid-escape"],
+    "semi": "off",
+    "space-unary-ops": "error"
+  }
+}

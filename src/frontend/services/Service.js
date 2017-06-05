@@ -25,7 +25,9 @@ export class Service extends Angular2Service{
     return this._currentId
   }
   set currentId(nextId) {
-    if(this._currentId == nextId) {return}
+    if(this._currentId === nextId) {
+      return
+    }
     this._currentId = nextId
     this._currentRetrive.cancell = true;
     let nextRetrive = {}
@@ -33,9 +35,12 @@ export class Service extends Angular2Service{
     if(nextId){
       this._currentId = nextId
       this.getById(nextId).then(instance => {
-      if(nextRetrive.cancell){return}
-      this._current.next(instance)
-    })}
+        if(nextRetrive.cancell){
+          return
+        }
+        this._current.next(instance)
+      })
+    }
     else{
       this._currentRetrive.cancell = true;
       this._currentRetrive = {}

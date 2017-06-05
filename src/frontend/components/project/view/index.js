@@ -9,7 +9,10 @@ import { Observer }         from '../../../extra/observer';
 })
 export class ProjectView extends Observer{
 
-  constructor(projectService:ProjectService, milestoneService:MilestoneService) {
+  constructor(
+    projectService:ProjectService,
+    milestoneService:MilestoneService
+  ) {
     super()
     this.projectService = projectService
     this.milestoneService = milestoneService

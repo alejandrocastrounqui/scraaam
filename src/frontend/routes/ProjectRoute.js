@@ -5,11 +5,15 @@ import { MilestoneService } from '../services/MilestoneService';
 import { Observer }         from '../extra/observer';
 
 @Component({
-  template: `<local-project-view></local-project-view>`
+  template: '<local-project-view></local-project-view>'
 })
 export class ProjectRoute extends Observer{
 
-  constructor(route: ActivatedRoute, projectService:ProjectService, milestoneService:MilestoneService) {
+  constructor(
+    route: ActivatedRoute,
+    projectService:ProjectService,
+    milestoneService:MilestoneService
+  ) {
     super()
     this.route = route
     this.projectService = projectService
@@ -20,7 +24,7 @@ export class ProjectRoute extends Observer{
     super.ngOnInit()
     let localProject
     this.subscribe(this.projectService.current, project => {
-      if(project && project != localProject){
+      if(project && project !== localProject){
         this.milestoneService.currentId = project.milestonesIds[0]
       }
     })

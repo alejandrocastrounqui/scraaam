@@ -5,7 +5,7 @@ const Project = function(mapper){
     mapping:{
       name:        mapper.string(),
       description: mapper.string(),
-      milestones:  mapper.hasMany('Milestone', {as: 'project'})
+      milestones:  mapper.hasMany('Milestone', { as: 'project' })
     }
   }
 }

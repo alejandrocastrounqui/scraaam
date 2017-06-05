@@ -17,7 +17,9 @@ export class ProjectCreateForm {
     this.data = {}
   }
   createProject(isKeyAction, fronParent) {
-    if(this.hideActions && isKeyAction && !fronParent){return}
+    if(this.hideActions && isKeyAction && !fronParent){
+      return
+    }
     this.submitted = true
     if(this.projectCreateForm.invalid){
       return this.hideActions && Promise.reject()

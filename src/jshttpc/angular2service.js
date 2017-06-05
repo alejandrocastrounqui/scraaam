@@ -6,41 +6,42 @@ const extend = function(src, dest){
   return dest;
 }
 
-const transfer = function(attrName){
-  return null
-}
-
 const capitalize = function(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 const mapper = {
-  string: function(){ return {
-    process: function(localCTX){
-      localCTX.transforms.afterRetrive
-      .push(function(local, response){
-        local[localCTX.mappingName] = response[localCTX.mappingName]
-      })
-      localCTX.transforms.beforeCreate
-      .push(function(local, data){
-        local[localCTX.mappingName] = data[localCTX.mappingName]
-      })
-      localCTX.transforms.beforeUpdate
-      .push(function(request, local){
-        request[localCTX.mappingName] = local[localCTX.mappingName]
-      })
+  string: function(){
+    return {
+      process: function(localCTX){
+        localCTX.transforms.afterRetrive
+        .push(function(local, response){
+          local[localCTX.mappingName] = response[localCTX.mappingName]
+        })
+        localCTX.transforms.beforeCreate
+        .push(function(local, data){
+          local[localCTX.mappingName] = data[localCTX.mappingName]
+        })
+        localCTX.transforms.beforeUpdate
+        .push(function(request, local){
+          request[localCTX.mappingName] = local[localCTX.mappingName]
+        })
+      }
     }
-  }},
-  date: function(defaultKeyOrValue){ return {
-    process: function(localCTX){
+  },
+  date: function(/*defaultKeyOrValue*/){
+    return {
+      process: function(/*localCTX*/){
 
+      }
     }
-  }},
-  hasMany: function(modelName, config={}){
+  },
+  hasMany: function(modelName, config={ }){
     const relatedAs = config.as || modelName.toUpperCase()
     return {
       process: function(localCTX){
-        localCTX.modelPrototipe['addTo'+capitalize(localCTX.mappingName)] = function(data){
+        const methodName = 'addTo'+capitalize(localCTX.mappingName)
+        localCTX.modelPrototipe[methodName] = function(data){
           data[relatedAs] = this
           let relatedService = localCTX.service.getModelService(modelName)
           return relatedService.create(data).then((related)=>{
@@ -63,37 +64,41 @@ const mapper = {
       }
     }
   },
-  hasOne: function(modelName){ return {
-    process: function(localCTX){
+  hasOne: function(modelName){
+      return {
+      process: function(localCTX){
 
+      }
     }
-  }},
-  belongsTo: function(modelName){return {
-    process: function(localCTX){
-      localCTX.transforms.afterRetrive
-      .push(function(local, response){
-        local[localCTX.mappingName+'Id'] = response[localCTX.mappingName]
-        delete local[localCTX.mappingName]
-      })
-      localCTX.transforms.beforeCreate
-      .push(function(local, data){
-        if(!data[localCTX.mappingName+'Id'] && data[localCTX.mappingName]){
-          local[localCTX.mappingName] = data[localCTX.mappingName].id
-        }
-        else{
-          local[localCTX.mappingName] = data[localCTX.mappingName+'Id']
-        }
-      })
-      localCTX.transforms.afterCreate
-      .push(function(local){
-        local[localCTX.mappingName+'Id'] = local[localCTX.mappingName]
-      })
-      localCTX.transforms.beforeUpdate
-      .push(function(request, local){
-        request[localCTX.mappingName] = local[localCTX.mappingName]
-      })
+  },
+  belongsTo: function(modelName){
+    return {
+      process: function(localCTX){
+        localCTX.transforms.afterRetrive
+        .push(function(local, response){
+          local[localCTX.mappingName+'Id'] = response[localCTX.mappingName]
+          delete local[localCTX.mappingName]
+        })
+        localCTX.transforms.beforeCreate
+        .push(function(local, data){
+          if(!data[localCTX.mappingName+'Id'] && data[localCTX.mappingName]){
+            local[localCTX.mappingName] = data[localCTX.mappingName].id
+          }
+          else{
+            local[localCTX.mappingName] = data[localCTX.mappingName+'Id']
+          }
+        })
+        localCTX.transforms.afterCreate
+        .push(function(local){
+          local[localCTX.mappingName+'Id'] = local[localCTX.mappingName]
+        })
+        localCTX.transforms.beforeUpdate
+        .push(function(request, local){
+          request[localCTX.mappingName] = local[localCTX.mappingName]
+        })
+      }
     }
-  }}
+  }
 }
 
 
@@ -102,7 +107,7 @@ export class Angular2Service{
 
   constructor(model) {
     const schema = model(mapper)
-    this._cache = {}
+    this._cache = { }
     const resourcePath = schema.resourcePath || schema.name.toLowerCase()
     const transforms = {
       afterRetrive: [],
@@ -110,11 +115,16 @@ export class Angular2Service{
       beforeCreate: [],
       afterCreate:  []
     }
-    const modelPrototipe = {}
-    const defaultsCTX = {modelPrototipe, resourcePath, transforms, service: this}
+    const modelPrototipe = { }
+    const defaultsCTX = {
+      modelPrototipe,
+      resourcePath,
+      transforms,
+      service: this
+    }
     for(let mappingName in schema.mapping){
       let mapper = schema.mapping[mappingName]
-      let localCTX = extend(defaultsCTX, {mappingName})
+      let localCTX = extend(defaultsCTX, { mappingName })
       mapper.process(localCTX)
     }
     this.modelName = schema.name
@@ -158,17 +168,20 @@ export class Angular2Service{
       return Promise.resolve(inCache)
     }
     let promise = new Promise((resolve, reject)=>{
-      this.http.get(`/${this.resourcePath}/${id}`).toPromise().then(response => {
-      let local = {}
-      this.afterRetrive(local, response.json())
-      this._cache[id] = local
-      resolve(local)
-    })})
+      this.http.get(`/${this.resourcePath}/${id}`)
+      .toPromise()
+      .then(response => {
+        let local = { }
+        this.afterRetrive(local, response.json())
+        this._cache[id] = local
+        resolve(local)
+      })
+    })
     this._cache[id] = promise
     return promise
   }
   create(data) {
-    let local = {}
+    let local = { }
     this.beforeCreate(local, data)
     return this.http.post(`/${this.resourcePath}`, local)
       .toPromise()
@@ -193,7 +206,7 @@ export class Angular2Service{
       .toPromise()
       .then(response => {
         let relatedIds = response.json()
-        for(let index = 0, length = relatedIds.length; index < length; index ++){
+        for(let index = 0, length = relatedIds.length; index < length; index++){
           milestone._id = response.json()[0]
           milestone.__v = 0
         }

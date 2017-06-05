@@ -8,7 +8,7 @@ export class Angular2Provider{
     if(this.services[service.name]){
       throw Error(`Cannot declare multiple service for ${modelName}`)
     }
-    service.provider = this    
+    service.provider = this
     this.services[service.modelName] = service
   }
 

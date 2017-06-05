@@ -1,7 +1,7 @@
 import { Component }    from '@angular/core';
 import { Input }        from '@angular/core';
-import { ViewChild}     from '@angular/core';
-import { EventEmitter } from "@angular/common/src/facade/async";
+import { ViewChild }    from '@angular/core';
+import { EventEmitter } from '@angular/common/src/facade/async';
 import { EpicService }  from '../../../../services/EpicService';
 import { Observer }     from '../../../../extra/observer';
 

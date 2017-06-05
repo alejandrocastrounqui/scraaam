@@ -5,14 +5,14 @@ module.exports = (config) => {
     files: [ 'setup.js' ],
 
     preprocessors: {
-      "setup.js": ["webpack"]
+      "setup.js": ['webpack', 'coverage']
     },
     webpack: require("./webpack.config"),
     webpackMiddleware: {
       stats: "errors-only"
     },
 
-    reporters: [ 'mocha' ],
+    reporters: [ 'progress', 'coverage' ],
     mochaReporter: { output: 'full' },
     browserConsoleLogOptions: {
       level: 'log',

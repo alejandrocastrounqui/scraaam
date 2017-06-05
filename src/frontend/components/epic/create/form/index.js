@@ -1,6 +1,8 @@
-import { Component, Input, ViewChild} from '@angular/core';
-import { MilestoneService }  from '../../../../services/MilestoneService';
-import { Observer }        from '../../../../extra/observer';
+import { Component }        from '@angular/core';
+import { Input }            from '@angular/core';
+import { ViewChild }        from '@angular/core';
+import { MilestoneService } from '../../../../services/MilestoneService';
+import { Observer }         from '../../../../extra/observer';
 
 @Component({
   selector: 'local-epic-create-form',

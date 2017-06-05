@@ -6,7 +6,7 @@ import { EpicService }      from '../services/EpicService';
 import { Observer }         from '../extra/observer';
 
 @Component({
-  template: `<local-epic-view></local-epic-view>`
+  template: '<local-epic-view></local-epic-view>'
 })
 export class EpicRoute extends Observer{
 

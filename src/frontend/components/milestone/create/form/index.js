@@ -13,7 +13,10 @@ export class MilestoneCreateForm extends Observer{
   @Input() hideActions
   @ViewChild('milestoneCreateForm') milestoneCreateForm;
   @ViewChild('nameControl') nameControl
-  constructor(milestoneService:MilestoneService, projectService:ProjectService) {
+  constructor(
+    milestoneService:MilestoneService,
+    projectService:ProjectService
+  ) {
     super()
     this.milestoneService = milestoneService
     this.projectService = projectService

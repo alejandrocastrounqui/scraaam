@@ -19,6 +19,6 @@ mongoCon.load(EpicComment)
 
 mongoCon.makeRoutes(router)
 
-const mappings = {router, mongoCon}
+const mappings = { router, mongoCon }
 
 export default mappings

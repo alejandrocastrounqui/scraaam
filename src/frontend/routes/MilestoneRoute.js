@@ -5,11 +5,15 @@ import { MilestoneService } from '../services/MilestoneService';
 import { Observer }         from '../extra/observer';
 
 @Component({
-  template: `<local-project-view></local-project-view>`
+  template: '<local-project-view></local-project-view>'
 })
 export class MilestoneRoute extends Observer{
 
-  constructor(route: ActivatedRoute, projectService:ProjectService, milestoneService:MilestoneService) {
+  constructor(
+    route: ActivatedRoute,
+    projectService:ProjectService,
+    milestoneService:MilestoneService
+  ) {
     super()
     this.route = route
     this.projectService = projectService

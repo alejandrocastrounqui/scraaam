@@ -10,7 +10,7 @@ import mappings from './mappings'
 const app = express()
 app.use(bodyParser.json())
 
-app.use(express.static(__dirname + "/../../dist/frontend"))
+app.use(express.static(__dirname + '/../../dist/frontend'))
 
 app.use(mappings.router)
 

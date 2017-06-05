@@ -11,11 +11,11 @@ export class ProjectService extends Service{
   }
 
   getAll() {
-    return this.http.get(`/project`)
+    return this.http.get('/project')
     .toPromise()
     .then(response => {
       let projects = response.json()
-      for(let index = 0, length = projects.length; index < length; index ++){
+      for(let index = 0, length = projects.length; index < length; index++){
         let id = projects[index]._id
         let inCache = this._cache[id]
         if(inCache){

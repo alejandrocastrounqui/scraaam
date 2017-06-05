@@ -14,7 +14,9 @@ export class EpicDetail extends Observer{
   ngOnInit() {
     super.ngOnInit()
     this.subscribe(this.epicService.current, epic => {
-      if(this.epic == epic){ return }
+      if(this.epic === epic){
+        return
+      }
       this.epic = epic
     })
   }

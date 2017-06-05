@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component }        from '@angular/core';
 import { MilestoneService } from '../../../services/MilestoneService';
 import { Observer }         from '../../../extra/observer';
 
@@ -14,7 +14,9 @@ export class MilestoneDetail extends Observer{
   ngOnInit() {
     super.ngOnInit()
     this.subscribe(this.milestoneService.current, milestone => {
-      if(this.milestone == milestone){ return }
+      if(this.milestone === milestone){
+        return
+      }
       this.milestone = milestone
     })
   }

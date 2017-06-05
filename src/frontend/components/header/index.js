@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy}          from '@angular/core'
+import { Component }          from '@angular/core'
+import { OnInit }             from '@angular/core'
+import { OnDestroy }          from '@angular/core'
 import { NgbModal }           from '@ng-bootstrap/ng-bootstrap'
 import { ProjectCreateModal } from '../project/create/modal/index'
 import { ProjectService }     from '../../services/ProjectService';
@@ -30,7 +32,9 @@ export class HeaderView extends Observer{
   ngOnInit() {
     super.ngOnInit()
     this.subscribe(this.projectService.creation, newer => {
-      if(!newer){return}
+      if(!newer){
+        return
+      }
       this.projects.push(newer)
     })
     this.subscribe(this.projectService.current, current => {
