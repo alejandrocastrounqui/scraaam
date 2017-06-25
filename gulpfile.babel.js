@@ -37,9 +37,7 @@ let config = {}
       jshttpc: {
         dir:`${dist}/${backend}/${jshttpc}`
       },
-      server:  {
-        dir:`${dist}/${backend}/server.js`
-      }
+      server:  `${dist}/${backend}/server.js`
     }
   }
 }()
@@ -98,15 +96,15 @@ gulp.task('serve:backend', function(done) {
 });
 
 gulp.task('backend-coverage', function (done) {
-  return run('npm run backend-coverage').exec();
+  return run('npm run backend-coverage').exec()
 });
 
 gulp.task('frontend-coverage', function (done) {
-  return run('npm run frontend-coverage').exec();
+  return run('npm run frontend-coverage').exec()
 });
 
 gulp.task('coverage-report', function (done) {
-  return run('npm run coverage-report').exec();
+  return run('npm run coverage-report').exec()
 });
 
 gulp.task('coverage-upload', function () {
@@ -114,7 +112,7 @@ gulp.task('coverage-upload', function () {
     return result || (fs.existsSync(path.resolve(process.cwd(), file)) ? file : undefined)
   }, undefined)
   if(yamlFile){
-    const codecovConfig = yaml.readSync(yamlFile);
+    const codecovConfig = yaml.readSync(yamlFile)
     util.log(codecovConfig)
     let token = codecovConfig.codecov.token
     return run(`npm run coverage-upload -- -t ${token}`).exec();

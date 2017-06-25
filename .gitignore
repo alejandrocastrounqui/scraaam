@@ -1,5 +1,5 @@
 dist
-npm-debug.log
+npm-debug.log*
 mongo_data
 node_modules
 .nyc_output
