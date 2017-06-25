@@ -1,18 +1,19 @@
 module.exports = (config) => {
   config.set({
-    basePath: 'test/frontend',
+    basePath: '.',
     frameworks: [ 'mocha' ],
-    files: [ 'setup.js' ],
-
+    files: [
+      'test/frontend/setup.js'
+    ],
     preprocessors: {
-      "setup.js": ['webpack', 'coverage']
+      'src/frontend/**/*.js': ['coverage'],
+      'test/frontend/setup.js': ['webpack']
     },
-    webpack: require("./webpack.config"),
+    webpack: require('./webpack.config'),
     webpackMiddleware: {
-      stats: "errors-only"
+      stats: 'errors-only'
     },
-
-    reporters: [ 'progress', 'coverage' ],
+    reporters: [ 'mocha', 'progress', 'coverage' ],
     mochaReporter: { output: 'full' },
     browserConsoleLogOptions: {
       level: 'log',
@@ -20,7 +21,16 @@ module.exports = (config) => {
       terminal: true
     },
     port: 9876,
-    browsers: ['Chrome'],
+    // browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
+    },
     singleRun: true,
+    coverageReporter: {
+      'dir':  'coverage/',
+      'type': 'html'
+    }
   })
 }

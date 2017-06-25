@@ -3,7 +3,6 @@ module.exports = (config) => {
     basePath: 'test/frontend',
     frameworks: [ 'mocha' ],
     files: [ 'setup.js' ],
-
     preprocessors: {
       "setup.js": ["webpack"]
     },
