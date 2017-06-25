@@ -9,7 +9,7 @@ before_install:
 install:
   - npm install
   - npm update
-  - npm webdriver
+  - npm run webdriver
 script:
   - npm run gulp
 after_success:
