@@ -78,6 +78,10 @@ gulp.task('transpile:jshttpc', () => {
 
 gulp.task('transpile', ['transpile:backend', 'transpile:jshttpc'])
 
+gulp.task('clean-transpile', function(done) {
+  runSequence('clean:dist','transpile')
+})
+
 gulp.task('serve:backend', function(done) {
   runSequence(
     'clean:dist',
@@ -93,11 +97,11 @@ gulp.task('serve:backend', function(done) {
       // gulp.watch('dist/backend/**/*.js', server.start.bind(server)) //restart my server
     }
   )
-});
+})
 
 gulp.task('backend-coverage', function (done) {
   return run('npm run backend-coverage').exec()
-});
+})
 
 gulp.task('frontend-coverage', function (done) {
   return run('npm run frontend-coverage').exec()

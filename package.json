@@ -18,7 +18,9 @@
     "coverage-report": "nyc report --reporter=lcov",
     "coverage-upload": "codecov",
     "webdriver": "webdriver-manager update",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "start": "node dist/backend/server.js",
+    "webpack": "webpack"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

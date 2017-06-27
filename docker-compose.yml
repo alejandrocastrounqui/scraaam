@@ -1,0 +1,20 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      MONGO_URL:  'mongodb://mongo/scraaam'
+      DOCKER:      'true'
+      APP_PORT:     3001
+      APP_TIMEOUT: 10000
+      APP_RETRY:     500
+    depends_on:
+      - mongo
