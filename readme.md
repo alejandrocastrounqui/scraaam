@@ -23,3 +23,9 @@ npm run frontend
 ```
 docker-compose up
 ```
+
+build e2e image
+
+```
+docker build -f Dockerfile-e2e .
+```
