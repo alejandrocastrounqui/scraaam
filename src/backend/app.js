@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
+
 // Connects to mongoose
 import mongoose from 'mongoose'
 mongoose.Promise = global.Promise;

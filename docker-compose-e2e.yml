@@ -26,8 +26,9 @@ services:
     depends_on:
       - mongo
   e2e:
-    build: .
-    dockerfile:    Dockerfile-e2e
+    build:
+      context: .
+      dockerfile:  Dockerfile-e2e
     environment:
       APP_PORT:    3001
     depends_on:

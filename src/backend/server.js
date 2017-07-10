@@ -28,7 +28,7 @@ const connectMongo = function(){
           console.log('retry in ' + retryTime + ' milliseconds')
           let errorTime = now()
           if(errorTime - initilizeTime > timeout){
-            reject("mongoose connection timeout")
+            reject('mongoose connection timeout')
           }
           return setTimeout(tryConnection, retryTime)
         })

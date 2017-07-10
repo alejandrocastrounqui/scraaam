@@ -1,4 +1,4 @@
-#Noticias UNQ
+#Noticias UNQ [![Build Status](https://api.travis-ci.org/alejandrocastrounqui/scraaam.svg?branch=dev)](https://travis-ci.org/alejandrocastrounqui/scraaam)
 
 ### Initialize mongodb
 
