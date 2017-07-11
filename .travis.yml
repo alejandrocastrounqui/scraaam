@@ -23,6 +23,7 @@ install:
   - npm update
 script:
   - npm run gulp
-  - docker-compose -f docker-compose-e2e.yml up --build --abort-on-container-exit
+  - docker-compose -f docker-compose-e2e.yml build
+  - docker-compose -f docker-compose-e2e.yml up --abort-on-container-exit
 after_success:
   - npm run backend-coverage
