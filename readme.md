@@ -60,3 +60,9 @@ docker-compose -f docker-compose-e2e.yml build
 ```
 docker-compose -f docker-compose-e2e.yml up
 ```
+
+#### Docker compose deploy e2e context (travis-ci)
+
+```
+docker-compose -f docker-compose-e2e.yml up --build --abort-on-container-exit
+```
