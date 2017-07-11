@@ -7,7 +7,9 @@ COPY package.json .
 RUN npm install
 
 COPY  src                src
+COPY  test               test
 COPY  gulpfile.babel.js  gulpfile.babel.js
+COPY  protractor.conf.js protractor.conf.js
 COPY  webpack.config.js  webpack.config.js
 COPY .babelrc           .babelrc
 COPY .bootstraprc       .bootstraprc

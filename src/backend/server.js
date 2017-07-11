@@ -37,8 +37,9 @@ const connectMongo = function(){
     })
   }
   else{
-    mongoose.createConnection(mongo_url)
-    return Promise.resolve()
+    return mongoose.connect(mongo_url)
+    // mongoose.createConnection(mongo_url)
+    // return Promise.resolve()
   }
 }
 

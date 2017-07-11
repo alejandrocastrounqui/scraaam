@@ -4,12 +4,12 @@ import sinonChai from "sinon-chai"
 
 chai.should()
 chai.use(sinonChai)
-
 import { Component }           from "@angular/core"
 import { Router }              from "@angular/router"
 import { RouterTestingModule } from "@angular/router/testing"
 
 import { By }                  from "@angular/platform-browser"
+import { inject }              from '@angular/core/testing';
 import { TestBed }             from "@angular/core/testing"
 import { MockBackend }         from '@angular/http/testing'
 import { HttpModule }          from '@angular/http/'
@@ -42,15 +42,18 @@ describe("HeaderView", () => {
   }
 
   beforeEach(() => {
-
     let http = {
       get() {
       }
     }
     sinon.stub(http, "get")
+    http.get.withArgs("/project/testingHeaderProjectId").returns(createAngularResponse({
+      "_id": "testingHeaderProjectId",
+      "name": "testingHeaderProjectName"
+    }));
     http.get.withArgs("/project").returns(createAngularResponse([{
-      "_id": "id1",
-      "name": "projectOne"
+      "_id": "testingHeaderProjectId",
+      "name": "testingHeaderProjectName"
     }, {
       "_id": "id2",
       "name": "projectTwo"
@@ -65,10 +68,7 @@ describe("HeaderView", () => {
       providers: [{
           provide: Http,
           useValue: http
-        },/*{
-          provide: XHRBackend,
-          useClass: MockBackend
-        },*/
+        },
         ProjectService,
         MilestoneService,
         EpicService
@@ -77,20 +77,22 @@ describe("HeaderView", () => {
     fixture = TestBed.createComponent(HeaderView);
   })
 
-  it("header should contain data.title as interpolated text", () => {
-    fixture.detectChanges()
-    
-    // fixture.debugElement.query(By.css("header"))
-    //   .nativeElement.innerHTML.should.be.equal("Some title")
-    //
-    // fixture.componentInstance.data.title = "Some title 2"
-    // fixture.detectChanges()
-    //
-    // fixture.debugElement.query(By.css("header")).nativeElement
-    //       .innerHTML.should.be.equal("Some title 2")
+  it("header should contain current proyect name", (done) => {
+
+    TestBed.compileComponents()
+    .then(
+      inject([ProjectService],
+      (projectService) => {
+        fixture.detectChanges()
+        projectService.currentId = "testingHeaderProjectId"
+        fixture.whenStable().then(() => {
+          fixture.detectChanges();
+          const projectItem = fixture.debugElement.query(By.css(".projects-menu .current-project"))
+          projectItem.nativeElement.textContent.should.be.equal('testingHeaderProjectName')
+          done()
+        });
+      })
+    )
   })
-
-
-
 
 })
