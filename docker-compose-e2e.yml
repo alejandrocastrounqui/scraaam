@@ -1,12 +1,14 @@
 version: "3"
 services:
   selenium:
-    image: selenium/standalone-chrome:3.4.0-einsteinium
+    image: selenium/standalone-chrome
     ports:
       - "4444:4444"
     entrypoint: bash -c "while ! timeout 1 wget -qO- http://app:3001/container/status > /dev/null ; do sleep 1; done ; ./opt/bin/entry_point.sh"
     depends_on:
       - mongo
+    volumes:
+      - /dev/shm:/dev/shm
   mongo:
     image: mongo
     ports:
