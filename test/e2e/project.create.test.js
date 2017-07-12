@@ -13,7 +13,7 @@ describe("project creation", () => {
 
     browser.get(appUrl)
     const beforeDropDown  = element(by.css(".projects-menu .dropdown-toggle"))
-    browser.wait(ec.elementToBeClickable(beforeDropDown), 5000);
+    browser.wait(ec.elementToBeClickable(beforeDropDown), 20000);
     await beforeDropDown.click()
     const beforeCreate = await element.all(by.css(".projects-menu .project-item")).count()
     await element(by.css(".projects-menu .create-project")).click()
@@ -22,9 +22,9 @@ describe("project creation", () => {
 
     browser.get(appUrl)
     const afterDropDown  = element(by.css(".projects-menu .dropdown-toggle"))
-    browser.wait(ec.elementToBeClickable(afterDropDown), 5000);
+    browser.wait(ec.elementToBeClickable(afterDropDown), 20000);
     await afterDropDown.click()
-    
+
     await element(by.css(".projects-menu .dropdown-toggle")).click()
     const afterCreate = await element.all(by.css(".projects-menu .project-item")).count()
     afterCreate.should.be.equal(beforeCreate + 1)

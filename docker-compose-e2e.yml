@@ -7,8 +7,8 @@ services:
     entrypoint: bash -c "while ! timeout 1 wget -qO- http://app:3001/container/status > /dev/null ; do sleep 1; done ; ./opt/bin/entry_point.sh"
     depends_on:
       - mongo
-    volumes:
-      - /dev/shm:/dev/shm
+    # volumes:
+    #   - /dev/shm:/dev/shm
   mongo:
     image: mongo
     ports:
